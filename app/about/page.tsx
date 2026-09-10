@@ -17,30 +17,30 @@ const values = [
 export default function AboutPage() {
   return (
     <main>
-      <section className="bg-[#171714] py-20 text-white sm:py-28">
+      <section className="hero-pattern relative overflow-hidden bg-[#111914] py-20 text-white sm:py-28">
         <div className="container-shell grid items-center gap-12 lg:grid-cols-[.9fr_1.1fr]">
-          <div>
-            <span className="section-kicker !text-[#d3b174]">عن دهانات عليا</span>
+          <div className="hero-enter">
+            <span className="section-kicker !text-[#dcb66f]">عن دهانات عليا</span>
             <h1 className="section-title mt-5 max-w-[15ch]">ننظر إلى التشطيب من زاوية الاستخدام، لا اللون وحده.</h1>
-            <p className="mt-6 text-lg leading-9 text-white/66">نقدم خدمات دهان وتشطيب وديكور للمنازل والفلل والمكاتب في الرياض. تبدأ طريقتنا بفهم حالة الموقع والنتيجة المطلوبة، ثم ترتيب المواد والمراحل والتفاصيل بما يناسب المساحة.</p>
+            <p className="mt-6 text-lg leading-9 text-white/62">نقدم خدمات دهان وتشطيب وديكور للمنازل والفلل والمكاتب في الرياض. تبدأ طريقتنا بفهم حالة الموقع والنتيجة المطلوبة، ثم ترتيب المواد والمراحل والتفاصيل بما يناسب المساحة.</p>
           </div>
-          <div className="relative min-h-[420px] overflow-hidden rounded-[32px] sm:min-h-[560px]"><Image src="/hero-interior.webp" alt="فني دهانات ينفذ تشطيب جدار داخلي بعناية" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" /></div>
+          <div className="hero-visual-enter relative min-h-[420px] overflow-hidden rounded-[28px] border border-white/10 shadow-[0_30px_85px_rgba(0,0,0,.28)] sm:min-h-[560px]"><Image src="/hero-interior.webp" alt="فني دهانات ينفذ تشطيب جدار داخلي بعناية" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" /></div>
         </div>
       </section>
 
-      <section className="section-space bg-[#fbfaf7]">
-        <div className="container-shell grid gap-5 md:grid-cols-3">
+      <section className="section-space bg-[#f8f7f3]">
+        <div className="container-shell grid gap-5 md:grid-cols-3" data-reveal="up">
           {values.map(({ icon: Icon, title, text }) => (
-            <article key={title} className="rounded-[26px] border border-black/7 bg-white p-7"><div className="grid size-12 place-items-center rounded-2xl bg-[#f0e5d3] text-[#9b6e2e]"><Icon className="size-6" /></div><h2 className="mt-6 text-xl font-black">{title}</h2><p className="mt-3 leading-8 text-[#6e6458]">{text}</p></article>
+            <article key={title} className="feature-card rounded-[24px] border border-[#17201c]/8 bg-white p-7"><div className="grid size-12 place-items-center rounded-[15px] bg-[#f3eadb] text-[#996a28]"><Icon className="size-6" /></div><h2 className="mt-6 text-xl font-black">{title}</h2><p className="mt-3 leading-8 text-[#66706a]">{text}</p></article>
           ))}
         </div>
       </section>
 
-      <section className="section-space bg-[#eee5d8]">
+      <section className="section-space bg-[#ece9e1]">
         <div className="container-shell grid gap-12 lg:grid-cols-[.85fr_1.15fr]">
           <div><span className="section-kicker">معيارنا العملي</span><h2 className="section-title mt-4">كل تفصيل يجب أن يخدم جودة التسليم.</h2></div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {["فحص السطح قبل اختيار النظام", "شرح بنود العرض بصورة واضحة", "مراعاة الإضاءة وطبيعة الاستخدام", "مراجعة الحواف والفواصل والتجانس"].map((item) => <div key={item} className="flex items-start gap-3 rounded-[20px] bg-white/65 p-5 font-black leading-7"><CheckCircle2 className="mt-1 size-5 shrink-0 text-[#a77735]" />{item}</div>)}
+            {["فحص السطح قبل اختيار النظام", "شرح بنود العرض بصورة واضحة", "مراعاة الإضاءة وطبيعة الاستخدام", "مراجعة الحواف والفواصل والتجانس"].map((item) => <div key={item} className="feature-card flex items-start gap-3 rounded-[20px] border border-white bg-white/72 p-5 font-black leading-7"><CheckCircle2 className="mt-1 size-5 shrink-0 text-[#a77735]" />{item}</div>)}
           </div>
         </div>
       </section>

@@ -5,6 +5,7 @@ import {
   BadgeCheck,
   CheckCircle2,
   Clock3,
+  Layers3,
   MapPin,
   MessageCircle,
   Palette,
@@ -23,163 +24,209 @@ const faq = [
   { question: "هل توفرون المواد أم التنفيذ فقط؟", answer: "يمكن ترتيب العرض على التنفيذ فقط أو التنفيذ مع المواد بحسب رغبتك. نوضح نوع المواد وكمياتها وبنود العمل قبل اعتماد السعر." },
   { question: "متى أعرف المدة المتوقعة للمشروع؟", answer: "بعد المعاينة وتحديد المساحات وحالة الجدران والتفاصيل الديكورية، نحدد مدة واقعية ومراحل واضحة للتنفيذ." },
   { question: "هل تعالجون الشقوق والتقشر قبل الدهان؟", answer: "يتم فحص الأسطح أولًا، ثم إدراج أعمال المعالجة المطلوبة ضمن نطاق العرض قبل التأسيس والدهان." },
-  { question: "كيف أختار اللون واللمعة المناسبة؟", answer: "نربط الاختيار بإضاءة المكان ومساحته وطبيعة الاستخدام. الغرف كثيرة الحركة قد تحتاج تشطيبًا عمليًا قابلًا للتنظيف، بينما المساحات الهادئة تناسبها خيارات أخرى." },
+  { question: "كيف أختار اللون واللمعة المناسبة؟", answer: "نربط الاختيار بإضاءة المكان ومساحته وطبيعة الاستخدام، ثم نقترح الدرجة والتشطيب الأنسب قبل التنفيذ." },
 ];
 
 const process = [
-  { number: "01", title: "معاينة وفهم المطلوب", text: "نراجع المساحات وحالة الأسطح ونحدد الأولويات قبل التسعير." },
-  { number: "02", title: "عرض واضح", text: "نوضح نطاق العمل والمواد والمراحل والمدة المتوقعة بصورة قابلة للمراجعة." },
-  { number: "03", title: "تنفيذ منظم", text: "نحمي المكان وننفذ التجهيز والطبقات والتفاصيل وفق ترتيب فني واضح." },
-  { number: "04", title: "مراجعة وتسليم", text: "نفحص اللون والحواف والفواصل وننهي الملاحظات المتفق عليها قبل التسليم." },
+  { number: "01", title: "معاينة دقيقة", text: "نفحص المساحات والأسطح ونفهم النتيجة التي تريد الوصول إليها." },
+  { number: "02", title: "خطة وعرض واضح", text: "نرتب المواد والمراحل والمدة المتوقعة قبل بدء التنفيذ." },
+  { number: "03", title: "تنفيذ منظم", text: "نحمي المكان وننفذ التجهيز والطبقات والتفاصيل بتسلسل فني." },
+  { number: "04", title: "مراجعة وتسليم", text: "نفحص اللون والحواف والفواصل وننهي الملاحظات المتفق عليها." },
 ];
 
 const features = [
-  { icon: Palette, title: "اختيار اللون", text: "وفق الإضاءة والخامة والاستخدام" },
-  { icon: Ruler, title: "ضبط المقاسات", text: "حتى تستقيم الفواصل والمحاور" },
-  { icon: Sparkles, title: "تنظيف التفاصيل", text: "حواف وزوايا بلا تشويش بصري" },
-  { icon: BadgeCheck, title: "مراجعة التسليم", text: "جولة نهائية على نطاق العمل" },
+  { icon: Palette, title: "اختيار أذكى للألوان", text: "وفق الإضاءة والخامة وطبيعة استخدام المساحة." },
+  { icon: Ruler, title: "مقاسات ومحاور دقيقة", text: "حتى تستقيم الفواصل والعناصر الديكورية بصريًا." },
+  { icon: Layers3, title: "ترتيب صحيح للطبقات", text: "تجهيز وتأسيس وتشطيب بالترتيب المناسب للسطح." },
+  { icon: Sparkles, title: "تسليم نظيف", text: "مراجعة نهائية للحواف والزوايا وتجانس اللون." },
 ];
+
+const featuredServices = services.slice(0, 6);
 
 export default function Home() {
   return (
     <main>
-      <section className="relative min-h-[calc(100svh-76px)] overflow-hidden bg-[#171714] text-white">
-        <Image src="/hero-interior.webp" alt="تنفيذ دهانات داخلية احترافية في فيلا حديثة بالرياض" fill priority sizes="100vw" className="object-cover object-[62%_center] opacity-68" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(19,18,15,.96)_0%,rgba(19,18,15,.72)_42%,rgba(19,18,15,.18)_75%)] max-md:bg-[linear-gradient(180deg,rgba(19,18,15,.55)_0%,rgba(19,18,15,.94)_68%)]" />
-        <div className="container-shell relative z-10 flex min-h-[calc(100svh-76px)] items-end pb-10 pt-20 md:items-center md:py-24">
-          <div className="max-w-2xl md:ml-auto">
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/18 bg-black/20 px-4 py-2 text-sm font-bold text-[#ead5ad] backdrop-blur-md">
-              <MapPin className="size-4" /> دهانات وتشطيبات في الرياض
+      <section className="hero-pattern relative overflow-hidden bg-[#111914] text-white">
+        <div className="pointer-events-none absolute -right-24 top-16 size-80 rounded-full bg-[#c99543]/10 blur-3xl" />
+        <div className="container-shell grid min-h-[690px] items-center gap-12 py-14 lg:grid-cols-[.92fr_1.08fr] lg:gap-16 lg:py-20">
+          <div className="hero-enter relative z-10">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[.055] px-4 py-2 text-sm font-bold text-[#e4c58c] backdrop-blur-md">
+              <MapPin className="size-4" aria-hidden="true" /> دهانات وتشطيبات في الرياض
             </p>
-            <h1 className="display-title">الجدار ليس لونًا فقط. هو دقة تبدأ قبل أول طبقة.</h1>
-            <p className="mt-6 max-w-xl text-[1.02rem] leading-8 text-white/74 sm:text-lg">
-              دهانات عليا تنفذ الدهانات الداخلية والخارجية والديكورات والترميمات بخطوات مرتبة، من فحص السطح واختيار الخامة حتى مراجعة التفاصيل عند التسليم.
+            <h1 className="display-title mt-7">
+              تشطيب يرفع قيمة <span className="text-[#d8a95c]">المكان</span> ويعيش بتفاصيله.
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg sm:leading-9">
+              ننفذ الدهانات والديكورات والترميمات للمنازل والفلل بخطوات واضحة، من تجهيز السطح واختيار الخامات حتى المراجعة النهائية.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild size="lg" className="h-14 rounded-full bg-[#c0934c] px-7 text-base font-black text-white hover:bg-[#a97938]">
-                <a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer"><MessageCircle className="size-5" /> اطلب معاينة عبر واتساب</a>
+              <Button asChild size="lg" className="h-14 rounded-2xl bg-[#d1a052] px-7 text-base font-black text-[#142019] shadow-[0_15px_36px_rgba(205,156,78,.2)] hover:bg-[#e0b66e]">
+                <a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer">
+                  <MessageCircle className="size-5" /> اطلب معاينة عبر واتساب
+                </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="h-14 rounded-full border-white/24 bg-white/8 px-7 text-base font-black text-white backdrop-blur-md hover:bg-white hover:text-[#171714]">
+              <Button asChild size="lg" variant="outline" className="h-14 rounded-2xl border-white/18 bg-white/[.055] px-7 text-base font-black text-white backdrop-blur-md hover:bg-white hover:text-[#17201c]">
                 <a href={`tel:${site.phoneE164}`}><Phone className="size-5" /> اتصل الآن</a>
               </Button>
             </div>
-            <div className="mt-9 grid max-w-xl grid-cols-3 divide-x-reverse divide-x divide-white/14 border-t border-white/14 pt-6 text-center sm:text-right">
-              <div className="px-2 first:pr-0"><strong className="block text-sm text-white sm:text-base">تغطية الرياض</strong><span className="mt-1 block text-xs text-white/52">نطاق خدمة واسع</span></div>
-              <div className="px-2 sm:px-5"><strong className="block text-sm text-white sm:text-base">خطة واضحة</strong><span className="mt-1 block text-xs text-white/52">قبل بداية التنفيذ</span></div>
-              <div className="px-2 sm:px-5"><strong className="block text-sm text-white sm:text-base">تواصل مباشر</strong><span className="mt-1 block text-xs text-white/52">اتصال وواتساب</span></div>
+            <div className="mt-9 grid max-w-xl grid-cols-3 gap-2 border-t border-white/10 pt-6">
+              {[
+                ["كل الرياض", "نطاق الخدمة"],
+                ["خطة واضحة", "قبل التنفيذ"],
+                ["اتصال مباشر", "بدون وسيط"],
+              ].map(([title, label]) => (
+                <div key={title} className="rounded-xl border border-white/[.07] bg-white/[.035] px-3 py-3">
+                  <strong className="block text-sm font-extrabold text-white sm:text-base">{title}</strong>
+                  <span className="mt-1 block text-xs text-white/42">{label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="hero-visual-enter relative pb-5 lg:pb-0">
+            <div className="hero-photo relative min-h-[430px] overflow-hidden rounded-[30px] border border-white/10 shadow-[0_35px_100px_rgba(0,0,0,.34)] sm:min-h-[540px]">
+              <Image src="/hero-interior.webp" alt="تنفيذ دهانات داخلية احترافية في فيلا حديثة بالرياض" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover object-[58%_center]" />
+              <div className="absolute inset-x-5 bottom-5 z-10 flex items-center justify-between gap-4 rounded-[20px] border border-white/15 bg-[#111914]/78 p-4 backdrop-blur-xl sm:inset-x-7 sm:bottom-7 sm:p-5">
+                <div>
+                  <p className="text-xs font-bold text-[#d8b06a]">دهان • ديكور • ترميم</p>
+                  <p className="mt-1 text-sm font-extrabold text-white sm:text-base">تفاصيل مرتبة من أول طبقة</p>
+                </div>
+                <div className="flex shrink-0 gap-1.5" aria-label="درجات ألوان تشطيب مقترحة">
+                  {["#d4a657", "#ede5d5", "#6c756f", "#ffffff"].map((color) => <span key={color} className="size-5 rounded-full border-2 border-white/40" style={{ backgroundColor: color }} />)}
+                </div>
+              </div>
+            </div>
+            <div className="absolute -bottom-2 -right-2 z-20 hidden items-center gap-3 rounded-2xl border border-[#d2a052]/25 bg-white px-4 py-3 text-[#17201c] shadow-[0_18px_50px_rgba(0,0,0,.22)] sm:flex lg:-right-6">
+              <span className="grid size-10 place-items-center rounded-xl bg-[#edf5f0] text-[#1c7955]"><BadgeCheck className="size-5" /></span>
+              <div><strong className="block text-sm font-black">تنفيذ بخطوات واضحة</strong><span className="text-xs text-[#69736e]">من المعاينة حتى التسليم</span></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section-space bg-[#fbfaf7]" id="services">
+      <section className="section-space bg-[#f8f7f3]" id="services">
         <div className="container-shell">
-          <div className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between" data-reveal="up">
             <div>
-              <span className="section-kicker">خدمات متكاملة</span>
-              <h2 className="section-title mt-4">كل تشطيب له خامته، ترتيبه، وتفاصيله الصحيحة.</h2>
+              <span className="section-kicker">خدماتنا الرئيسية</span>
+              <h2 className="section-title mt-4">حلول متكاملة، وكل خدمة لها خطواتها الصحيحة.</h2>
             </div>
-            <p className="max-w-lg text-base leading-8 text-[#6c6256]">بدل الحل الواحد لكل الجدران، نحدد الخدمة وفق حالة السطح واستخدام المساحة والنتيجة المطلوبة.</p>
+            <div className="max-w-lg">
+              <p className="text-base leading-8 text-[#66706a]">نحدد الخدمة والخامة بحسب حالة المكان والاستخدام والنتيجة المطلوبة، بدل تطبيق حل واحد على كل مشروع.</p>
+              <Link href="/services" className="mt-4 inline-flex items-center gap-2 text-sm font-black text-[#946a2c]">استعرض جميع الخدمات <ArrowLeft className="size-4" /></Link>
+            </div>
           </div>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, index) => (
-              <Link key={service.slug} href={`/services/${service.slug}`} className={`service-card group relative min-h-[255px] overflow-hidden rounded-[26px] border border-black/7 p-6 ${index === 0 || index === 9 ? "bg-[#24221d] text-white" : "bg-white"}`}>
-                <div className={`grid size-12 place-items-center rounded-2xl ${index === 0 || index === 9 ? "bg-[#c0934c] text-white" : "bg-[#f0e5d3] text-[#9c6f2f]"}`}>
-                  <ServiceIcon name={service.icon} className="size-6" />
+
+          <div className="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-reveal="up">
+            {featuredServices.map((service, index) => (
+              <Link key={service.slug} href={`/services/${service.slug}`} className="service-card group relative flex min-h-[248px] flex-col overflow-hidden rounded-[24px] border border-[#17201c]/8 bg-white p-6 sm:p-7">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="service-icon-wrap grid size-13 place-items-center rounded-[16px] bg-[#f3eadb] text-[#9c6b27]">
+                    <ServiceIcon name={service.icon} className="size-6" />
+                  </div>
+                  <span className="text-xs font-black tracking-[.12em] text-[#17201c]/22">0{index + 1}</span>
                 </div>
-                <h3 className="mt-7 text-xl font-black">{service.shortTitle}</h3>
-                <p className={`mt-3 text-[.95rem] leading-7 ${index === 0 || index === 9 ? "text-white/62" : "text-[#766c60]"}`}>{service.summary}</p>
-                <span className={`absolute bottom-5 left-5 grid size-10 place-items-center rounded-full transition-transform duration-300 group-hover:-translate-x-1 ${index === 0 || index === 9 ? "bg-white/10" : "bg-[#f6f1e9]"}`} aria-hidden="true"><ArrowLeft className="size-4" /></span>
+                <h3 className="mt-7 text-xl font-black tracking-[-.02em] text-[#17201c]">{service.shortTitle}</h3>
+                <p className="mt-3 text-[.95rem] leading-7 text-[#69726d]">{service.summary}</p>
+                <span className="service-arrow mt-auto grid size-10 place-items-center self-end rounded-xl bg-[#f1efe9] text-[#17201c]" aria-hidden="true"><ArrowLeft className="size-4" /></span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section-space overflow-hidden bg-[#eee5d8]">
-        <div className="container-shell grid items-center gap-12 lg:grid-cols-[1.02fr_.98fr]">
-          <div className="relative min-h-[440px] overflow-hidden rounded-[34px] shadow-[0_30px_80px_rgba(47,37,24,.16)] sm:min-h-[560px]">
-            <Image src="/decor-finish.webp" alt="تشطيبات دهانات وبديل الخشب والرخام داخل مجلس عصري" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
-            <div className="absolute inset-x-5 bottom-5 rounded-[22px] border border-white/20 bg-[#171714]/84 p-5 text-white backdrop-blur-xl sm:inset-x-auto sm:bottom-7 sm:left-7 sm:max-w-sm">
-              <p className="text-sm font-bold text-[#dec18f]">قرار واحد يغيّر النتيجة</p>
-              <p className="mt-2 leading-7 text-white/74">تنسيق اللون والخامة والإضاءة قبل التنفيذ يمنع ازدحام التفاصيل ويجعل المكان أكثر اتزانًا.</p>
+      <section className="section-space overflow-hidden bg-[#ece9e1]">
+        <div className="container-shell grid items-center gap-12 lg:grid-cols-[1.02fr_.98fr] lg:gap-18">
+          <div className="relative" data-reveal="scale">
+            <div className="relative min-h-[450px] overflow-hidden rounded-[28px] shadow-[0_30px_80px_rgba(25,37,31,.14)] sm:min-h-[580px]">
+              <Image src="/decor-finish.webp" alt="تشطيبات دهانات وبديل الخشب والرخام داخل مجلس عصري" fill sizes="(max-width: 1024px) 100vw, 52vw" className="object-cover" />
+            </div>
+            <div className="absolute inset-x-4 -bottom-7 rounded-[20px] border border-white/70 bg-white/88 p-5 shadow-[0_18px_55px_rgba(24,35,29,.12)] backdrop-blur-xl sm:inset-x-auto sm:bottom-7 sm:left-7 sm:max-w-sm">
+              <p className="text-sm font-black text-[#966a2b]">التناسق قبل التنفيذ</p>
+              <p className="mt-2 text-sm leading-7 text-[#5e6963]">نراجع اللون والخامة والإضاءة معًا حتى تبقى النتيجة هادئة ومتوازنة.</p>
             </div>
           </div>
-          <div>
-            <span className="section-kicker">تشطيب متناسق</span>
-            <h2 className="section-title mt-4">نرتب العناصر كمنظومة واحدة، لا كأعمال منفصلة.</h2>
-            <p className="mt-6 text-[1.04rem] leading-8 text-[#665b4d]">عندما يجتمع الدهان مع الجبس بورد وبديل الخشب أو الرخام، تصبح نقاط الالتقاء أهم من كل عنصر منفرد. لذلك نراجع المقاسات والمحاور والألوان قبل التنفيذ.</p>
+          <div className="pt-5 lg:pt-0" data-reveal="up">
+            <span className="section-kicker">جودة تُرى في التفاصيل</span>
+            <h2 className="section-title mt-4">لا نتعامل مع كل عنصر بمعزل عن بقية المكان.</h2>
+            <p className="mt-6 text-base leading-8 text-[#606a64] sm:text-lg">عندما يجتمع الدهان مع الجبس بورد وبديل الخشب أو الرخام، تصبح نقاط الالتقاء والمقاسات وتوزيع الألوان هي الفارق الحقيقي.</p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {features.map(({ icon: FeatureIcon, title, text }) => (
-                <div key={title} className="rounded-[20px] bg-white/68 p-5"><FeatureIcon className="size-5 text-[#a47635]" /><h3 className="mt-4 font-black">{title}</h3><p className="mt-2 text-sm leading-6 text-[#74695d]">{text}</p></div>
+                <div key={title} className="feature-card rounded-[20px] border border-white/90 bg-white/72 p-5">
+                  <span className="grid size-10 place-items-center rounded-xl bg-[#17201c] text-[#e1b66e]"><FeatureIcon className="size-5" strokeWidth={1.9} /></span>
+                  <h3 className="mt-4 font-black text-[#17201c]">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#66706b]">{text}</p>
+                </div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section-space bg-[#171714] text-white">
-        <div className="container-shell">
-          <div className="grid gap-8 lg:grid-cols-[.75fr_1.25fr]">
-            <div>
-              <span className="section-kicker !text-[#d4b274]">طريقة العمل</span>
-              <h2 className="section-title mt-4">أربع مراحل تجعل القرار والتنفيذ أوضح.</h2>
-              <p className="mt-5 max-w-md leading-8 text-white/58">وضوح المراحل يقلل التغييرات المفاجئة ويحافظ على ترتيب الموقع وجودة النتيجة.</p>
-            </div>
-            <ol className="grid gap-px overflow-hidden rounded-[28px] bg-white/10 sm:grid-cols-2">
-              {process.map((step) => (
-                <li key={step.number} className="bg-[#201f1a] p-7 sm:p-8">
-                  <span className="text-sm font-black text-[#cda85f]">{step.number}</span>
-                  <h3 className="mt-5 text-xl font-black">{step.title}</h3>
-                  <p className="mt-3 leading-7 text-white/58">{step.text}</p>
-                </li>
-              ))}
-            </ol>
+      <section className="relative overflow-hidden bg-[#111914] py-20 text-white sm:py-28">
+        <div className="pointer-events-none absolute inset-0 hero-pattern opacity-60" />
+        <div className="container-shell relative">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between" data-reveal="up">
+            <div><span className="section-kicker !text-[#d8b16c]">طريقة العمل</span><h2 className="section-title mt-4">أربع مراحل. مسار واحد واضح.</h2></div>
+            <p className="max-w-md leading-8 text-white/54">وضوح المراحل يقلل التعديلات المفاجئة ويحافظ على ترتيب الموقع وجودة النتيجة.</p>
           </div>
+          <ol className="mt-11 grid gap-4 md:grid-cols-2 xl:grid-cols-4" data-reveal="up">
+            {process.map((step) => (
+              <li key={step.number} className="process-card relative overflow-hidden rounded-[22px] border border-white/10 bg-white/[.045] p-6">
+                <span className="text-4xl font-black text-[#d5a557]/28">{step.number}</span>
+                <h3 className="mt-7 text-xl font-black">{step.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-white/55">{step.text}</p>
+                <span className="absolute -bottom-8 -left-8 size-20 rounded-full border border-[#d5a557]/15" aria-hidden="true" />
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
       <section className="section-space bg-white">
-        <div className="container-shell grid items-center gap-12 lg:grid-cols-[.9fr_1.1fr]">
-          <div className="lg:order-2">
-            <span className="section-kicker">دهانات خارجية</span>
-            <h2 className="section-title mt-4">الواجهة الجيدة تقاوم قبل أن تتجمّل.</h2>
-            <p className="mt-6 leading-8 text-[#6d6357]">التقشر والتفاوت والشقوق السطحية تحتاج تشخيصًا وتجهيزًا مناسبًا قبل اللون. ننظم أعمال الواجهات وفق حالة المبنى والخامة والتعرض للشمس والغبار.</p>
+        <div className="container-shell grid items-center gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-18">
+          <div data-reveal="up">
+            <span className="section-kicker">دهانات الواجهات</span>
+            <h2 className="section-title mt-4">الواجهة الجيدة تُجهّز للمناخ قبل اختيار اللون.</h2>
+            <p className="mt-6 text-base leading-8 text-[#65706a] sm:text-lg">نعالج التقشر والتفاوت والشقوق السطحية، ثم نختار نظام التأسيس والدهان وفق حالة المبنى وتعرضه للشمس والغبار.</p>
             <ul className="mt-7 grid gap-3">
-              {["فحص حالة السطح ومناطق الضعف", "اختيار مواد تأسيس ودهان مناسبة", "حماية الفتحات والأرضيات القريبة", "مراجعة التغطية والتجانس عند التسليم"].map((item) => <li key={item} className="flex items-start gap-3 font-bold text-[#3d372e]"><CheckCircle2 className="mt-1 size-5 shrink-0 text-[#a87a39]" />{item}</li>)}
+              {["فحص حالة السطح ومناطق الضعف", "اختيار مواد مناسبة للاستخدام الخارجي", "حماية الفتحات والأرضيات القريبة", "مراجعة التغطية والتجانس عند التسليم"].map((item) => (
+                <li key={item} className="flex items-start gap-3 font-bold text-[#334039]"><CheckCircle2 className="mt-1 size-5 shrink-0 text-[#a97830]" />{item}</li>
+              ))}
             </ul>
-            <Button asChild size="lg" className="mt-8 h-12 rounded-full bg-[#171714] px-6 text-white hover:bg-[#34312a]"><Link href="/services/exterior-painting">تفاصيل دهانات الواجهات <ArrowLeft /></Link></Button>
+            <Button asChild size="lg" className="mt-8 h-13 rounded-2xl bg-[#17201c] px-6 text-white hover:bg-[#2a3730]"><Link href="/services/exterior-painting">تفاصيل دهانات الواجهات <ArrowLeft /></Link></Button>
           </div>
-          <div className="relative min-h-[410px] overflow-hidden rounded-[32px] lg:order-1 lg:min-h-[540px]">
-            <Image src="/exterior-villa.webp" alt="دهانات خارجية لواجهة فيلا حديثة في الرياض" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+          <div className="relative min-h-[420px] overflow-hidden rounded-[28px] bg-[#e6e2d9] lg:min-h-[560px]" data-reveal="scale">
+            <Image src="/exterior-villa.webp" alt="دهانات خارجية لواجهة فيلا حديثة في الرياض" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
+            <div className="absolute bottom-5 right-5 rounded-2xl border border-white/50 bg-white/84 px-4 py-3 text-sm font-black text-[#17201c] shadow-lg backdrop-blur-md"><MapPin className="ml-2 inline size-4 text-[#a97830]" /> تنفيذ داخل مدينة الرياض</div>
           </div>
         </div>
       </section>
 
-      <section className="section-space soft-grid border-y border-[#e8dfd3] bg-[#f8f4ed]">
-        <div className="container-shell grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
-          <div>
-            <span className="section-kicker">أسئلة قبل البدء</span>
-            <h2 className="section-title mt-4">إجابات مختصرة تساعدك على اتخاذ قرار أوضح.</h2>
-            <div className="mt-7 flex items-center gap-3 text-sm font-bold text-[#6e6254]"><Clock3 className="size-5 text-[#a87836]" /> استقبال طلبات المعاينة يوميًا</div>
+      <section className="section-space soft-grid border-y border-[#dedbd3] bg-[#f2f0ea]">
+        <div className="container-shell grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:gap-16">
+          <div data-reveal="up">
+            <span className="section-kicker">قبل أن تبدأ</span>
+            <h2 className="section-title mt-4">إجابات واضحة على أكثر الأسئلة تكرارًا.</h2>
+            <div className="mt-7 inline-flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-sm font-bold text-[#5f6963] shadow-sm"><Clock3 className="size-5 text-[#9e702e]" /> استقبال طلبات المعاينة يوميًا</div>
           </div>
-          <Accordion type="single" collapsible dir="rtl" className="overflow-hidden rounded-[26px] border border-black/7 bg-white px-5 sm:px-7">
+          <Accordion type="single" collapsible dir="rtl" className="overflow-hidden rounded-[24px] border border-[#17201c]/8 bg-white px-5 shadow-[0_18px_55px_rgba(24,35,29,.06)] sm:px-7" data-reveal="up">
             {faq.map((item, index) => (
-              <AccordionItem key={item.question} value={`item-${index}`} className="border-[#e9e1d6]">
-                <AccordionTrigger className="py-6 text-right text-base font-black hover:no-underline">{item.question}</AccordionTrigger>
-                <AccordionContent className="pb-6 text-[.98rem] leading-8 text-[#6d6357]">{item.answer}</AccordionContent>
+              <AccordionItem key={item.question} value={`item-${index}`} className="border-[#e6e3dc]">
+                <AccordionTrigger className="py-6 text-right text-base font-black text-[#25302a] hover:no-underline">{item.question}</AccordionTrigger>
+                <AccordionContent className="pb-6 text-[.98rem] leading-8 text-[#66706a]">{item.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </div>
       </section>
 
-      <section className="bg-[#c0934c] py-16 text-white sm:py-20">
-        <div className="container-shell flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-          <div><p className="text-sm font-black text-[#2c241a]/70">ابدأ بصورة واضحة عن مشروعك</p><h2 className="mt-3 max-w-2xl text-3xl font-black leading-tight sm:text-5xl">أرسل صور المساحة وموقعك، ونرتب معك الخطوة التالية.</h2></div>
+      <section className="bg-[#d0a052] py-16 text-[#142019] sm:py-20">
+        <div className="container-shell flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between" data-reveal="up">
+          <div><p className="text-sm font-black text-[#142019]/60">ابدأ بخطوة بسيطة</p><h2 className="mt-3 max-w-2xl text-3xl font-black leading-tight tracking-[-.03em] sm:text-5xl">أرسل صور المكان وموقعك، ونرتب معك المعاينة.</h2></div>
           <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg" className="h-14 rounded-full bg-[#171714] px-7 text-base font-black text-white hover:bg-[#2e2b25]"><a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer"><MessageCircle /> واتساب</a></Button>
-            <Button asChild size="lg" variant="outline" className="h-14 rounded-full border-white/40 bg-white/10 px-7 text-base font-black text-white hover:bg-white hover:text-[#171714]"><a href={`tel:${site.phoneE164}`}><Phone /> {site.phoneDisplay}</a></Button>
+            <Button asChild size="lg" className="h-14 rounded-2xl bg-[#17201c] px-7 text-base font-black text-white hover:bg-[#2b3831]"><a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer"><MessageCircle /> واتساب</a></Button>
+            <Button asChild size="lg" variant="outline" className="h-14 rounded-2xl border-[#17201c]/20 bg-white/30 px-7 text-base font-black text-[#17201c] hover:bg-white"><a href={`tel:${site.phoneE164}`}><Phone /> <span dir="ltr">{site.phoneDisplay}</span></a></Button>
           </div>
         </div>
       </section>

@@ -27,5 +27,5 @@ const iconMap: Record<string, LucideIcon> = {
 
 export function ServiceIcon({ name, className }: { name: string; className?: string }) {
   const Icon = iconMap[name] ?? PaintRoller;
-  return <Icon aria-hidden="true" className={className} strokeWidth={1.7} />;
+  return <Icon aria-hidden="true" className={className} strokeWidth={1.9} />;
 }

@@ -1,10 +1,18 @@
 import type { Metadata, Viewport } from "next";
+import { Alexandria } from "next/font/google";
 import { FloatingContact } from "@/components/floating-contact";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { StructuredData } from "@/components/structured-data";
 import { site } from "@/data/site";
 import "./globals.css";
+
+const alexandria = Alexandria({
+  subsets: ["arabic"],
+  weight: "variable",
+  variable: "--font-arabic",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -33,7 +41,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body>
+      <body className={alexandria.variable}>
         <StructuredData />
         <SiteHeader />
         {children}

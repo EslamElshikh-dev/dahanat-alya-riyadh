@@ -1,17 +1,20 @@
 import Link from "next/link";
+import { PaintRoller } from "lucide-react";
 
 export function BrandMark({ inverse = false }: { inverse?: boolean }) {
   return (
-    <Link href="/" className="group inline-flex items-center gap-3" aria-label="دهانات عليا - الرئيسية">
-      <span className="relative grid size-11 place-items-center overflow-hidden rounded-[14px] bg-[#b78a45] shadow-[0_8px_24px_rgba(183,138,69,.22)] transition-transform duration-300 group-hover:-rotate-2">
-        <span className="absolute inset-x-0 bottom-0 h-3 bg-[#8f642b]" />
-        <span className="relative text-xl font-black text-white">ع</span>
+    <Link href="/" className="brand-mark group inline-flex items-center gap-3" aria-label="دهانات عليا - الرئيسية">
+      <span className="brand-symbol relative grid size-12 place-items-center overflow-hidden rounded-[16px] bg-[#d5a557] text-[#17201c] shadow-[0_12px_32px_rgba(180,128,45,.2)]">
+        <span className="absolute inset-x-0 bottom-0 h-[7px] bg-[#b47b28]" />
+        <span className="brand-symbol-icon relative grid size-8 place-items-center rounded-xl bg-white/82">
+          <PaintRoller className="size-[18px]" strokeWidth={2.2} aria-hidden="true" />
+        </span>
       </span>
-      <span className="leading-tight">
-        <span className={`block text-[1.05rem] font-black ${inverse ? "text-white" : "text-[#171714]"}`}>
+      <span className="leading-[1.15]">
+        <span className={`block text-[1.04rem] font-black tracking-[-.02em] ${inverse ? "text-white" : "text-[#17201c]"}`}>
           دهانات عليا
         </span>
-        <span className={`block text-[.72rem] font-semibold tracking-[.08em] ${inverse ? "text-white/55" : "text-[#79684f]"}`}>
+        <span className={`mt-1 block text-[.66rem] font-bold tracking-[.15em] ${inverse ? "text-white/48" : "text-[#7c6b53]"}`}>
           ALYA PAINTS
         </span>
       </span>
