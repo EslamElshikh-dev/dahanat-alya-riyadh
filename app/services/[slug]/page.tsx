@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, CheckCircle2, ChevronLeft, MessageCircle, Phone } from "lucide-react";
+import { ArrowLeft, ChevronLeft, MessageCircle, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { ServiceCard } from "@/components/service-card";
 import { ServiceIcon } from "@/components/service-icon";
 import { getService, services } from "@/data/services";
 import { defaultWhatsAppMessage, site, whatsappUrl } from "@/data/site";
@@ -138,9 +139,9 @@ export default async function ServicePage({ params }: Props) {
           <div className="flex items-end justify-between gap-6"><div><span className="section-kicker">خدمات مرتبطة</span><h2 className="mt-4 text-3xl font-black">قد تحتاج أيضًا</h2></div><Link href="/services" className="hidden items-center gap-2 font-black text-[#8f642d] sm:flex">كل الخدمات <ArrowLeft className="size-4" /></Link></div>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {related.map((item) => (
-              <Link key={item.slug} href={`/services/${item.slug}`} className="service-card rounded-[22px] border border-black/7 bg-white p-6" data-reveal="up">
-                <span className="service-icon-wrap grid size-12 place-items-center rounded-2xl bg-[#efe6d4] text-[#946728]"><ServiceIcon name={item.icon} className="size-6" /></span><h3 className="mt-5 text-xl font-black">{item.shortTitle}</h3><p className="mt-3 text-sm leading-7 text-[#70665b]">{item.summary}</p>
-              </Link>
+              <div key={item.slug} data-reveal="up">
+                <ServiceCard service={item} compact />
+              </div>
             ))}
           </div>
           <Button asChild size="lg" className="mt-10 h-14 rounded-2xl bg-[#111914] px-8 text-base font-black"><a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer"><MessageCircle /> ابدأ طلبك الآن</a></Button>

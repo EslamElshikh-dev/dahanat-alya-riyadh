@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { ServiceIcon } from "@/components/service-icon";
+import { ServiceCard } from "@/components/service-card";
 import { services } from "@/data/services";
 import { defaultWhatsAppMessage, site, whatsappUrl } from "@/data/site";
 
@@ -119,17 +119,7 @@ export default function Home() {
 
           <div className="mt-11 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-reveal="up">
             {featuredServices.map((service, index) => (
-              <Link key={service.slug} href={`/services/${service.slug}`} className="service-card group relative flex min-h-[248px] flex-col overflow-hidden rounded-[24px] border border-[#17201c]/8 bg-white p-6 sm:p-7">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="service-icon-wrap grid size-13 place-items-center rounded-[16px] bg-[#f3eadb] text-[#9c6b27]">
-                    <ServiceIcon name={service.icon} className="size-6" />
-                  </div>
-                  <span className="text-xs font-black tracking-[.12em] text-[#17201c]/22">0{index + 1}</span>
-                </div>
-                <h3 className="mt-7 text-xl font-black tracking-[-.02em] text-[#17201c]">{service.shortTitle}</h3>
-                <p className="mt-3 text-[.95rem] leading-7 text-[#69726d]">{service.summary}</p>
-                <span className="service-arrow mt-auto grid size-10 place-items-center self-end rounded-xl bg-[#f1efe9] text-[#17201c]" aria-hidden="true"><ArrowLeft className="size-4" /></span>
-              </Link>
+              <ServiceCard key={service.slug} service={service} index={index} />
             ))}
           </div>
         </div>
