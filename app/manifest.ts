@@ -2,15 +2,15 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "دهانات عليا",
-    short_name: "دهانات عليا",
-    description: "دهانات وتشطيبات وديكورات في الرياض",
+    name: "ALYA CHEMICAL For Industry Ltd.",
+    short_name: "ALYA CHEMICAL",
+    description: "أنظمة العزل الحراري والمائي والدهانات والتكسيات المعمارية المتطورة.",
     start_url: "/",
     display: "standalone",
-    background_color: "#fbfaf7",
-    theme_color: "#171714",
+    background_color: "#f4fafb",
+    theme_color: "#071828",
     lang: "ar",
     dir: "rtl",
-    icons: [{ src: "/favicon.svg", sizes: "any", type: "image/svg+xml" }],
+    icons: [{ src: "/alya-mark.png", sizes: "any", type: "image/png" }],
   };
 }
