@@ -4,6 +4,7 @@ export const site = {
   englishName: "Alya Paints",
   category: "دهّان",
   schemaType: "HousePainter",
+  // Keep the primary number aligned with the Google Business Profile.
   phoneDisplay: "055 768 2484",
   phoneRaw: "0557682484",
   phoneE164: "+966557682484",
