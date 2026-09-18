@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Alexandria, Manrope } from "next/font/google";
+import { Alexandria } from "next/font/google";
 import { FloatingContact } from "@/components/floating-contact";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -14,26 +14,16 @@ const alexandria = Alexandria({
   display: "swap",
 });
 
-const manrope = Manrope({
-  subsets: ["latin"],
-  weight: "variable",
-  variable: "--font-english",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "كيميا عليا | أنظمة العزل والدهانات المتطورة",
-    template: "%s | ALYA CHEMICAL",
+    default: "دهانات عليا Alya Paints | دهان وتشطيبات بالرياض",
+    template: "%s | دهانات عليا",
   },
   description: site.description,
   applicationName: site.name,
-  category: "Construction Chemicals",
-  alternates: {
-    canonical: "/",
-    languages: { "ar-SA": "/", "en-SA": "/en" },
-  },
+  category: "Home Services",
+  alternates: { canonical: "/" },
   robots: {
     index: true,
     follow: true,
@@ -42,28 +32,31 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ar_SA",
-    siteName: site.brandName,
-    title: "كيميا عليا | أنظمة العزل والدهانات المتطورة",
+    url: "/",
+    siteName: site.name,
+    title: "دهانات عليا Alya Paints | دهان وتشطيبات بالرياض",
     description: site.description,
+    images: [{ url: "/hero-interior.webp", width: 1200, height: 630, alt: "دهانات عليا Alya Paints في الرياض" }],
   },
   twitter: {
-    card: "summary",
-    title: "كيميا عليا | أنظمة العزل والدهانات المتطورة",
+    card: "summary_large_image",
+    title: "دهانات عليا Alya Paints | دهان وتشطيبات بالرياض",
     description: site.description,
+    images: ["/hero-interior.webp"],
   },
-  icons: { icon: "/alya-mark.png", shortcut: "/alya-mark.png", apple: "/alya-mark.png" },
+  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg", apple: "/favicon.svg" },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#071828",
+  themeColor: "#171714",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={`${alexandria.variable} ${manrope.variable}`}>
+      <body className={alexandria.variable}>
         <StructuredData />
         <SiteHeader />
         {children}

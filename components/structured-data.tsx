@@ -1,4 +1,4 @@
-import { products } from "@/data/products";
+import { services } from "@/data/services";
 import { site } from "@/data/site";
 
 export function StructuredData() {
@@ -6,40 +6,42 @@ export function StructuredData() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
-        "@id": `${site.url}/#organization`,
+        "@type": "HousePainter",
+        "@id": `${site.url}/#business`,
         name: site.name,
         alternateName: site.englishName,
         url: site.url,
-        logo: `${site.url}/brand/alya-chemical.webp`,
+        image: `${site.url}/hero-interior.webp`,
+        logo: `${site.url}/favicon.svg`,
         telephone: site.phoneE164,
-        email: site.email,
         description: site.description,
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: site.phoneE164,
+          contactType: "customer service",
+          areaServed: "SA",
+          availableLanguage: ["ar"],
+        },
+        areaServed: {
+          "@type": "City",
+          name: site.city,
+          containedInPlace: { "@type": "AdministrativeArea", name: site.region },
+        },
         address: {
           "@type": "PostalAddress",
-          streetAddress: "حي السلي، شارع أحمد الكاتب",
           addressLocality: site.city,
           addressRegion: site.region,
           addressCountry: "SA",
         },
-        sameAs: Object.values(site.social),
-        brand: [
-          { "@type": "Brand", name: "Alya Thermal" },
-          { "@type": "Brand", name: "Alya Paints" },
-        ],
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "منتجات كيميا عليا",
-          itemListElement: products.map((product, position) => ({
-            "@type": "ListItem",
-            position: position + 1,
-            item: {
-              "@type": "Product",
-              name: product.name.ar,
-              alternateName: product.code,
-              image: `${site.url}${product.image}`,
-              url: `${site.url}/products/${product.slug}`,
-              brand: { "@type": "Brand", name: product.category === "thermal" ? "Alya Thermal" : "Alya Paints" },
+          name: "خدمات دهانات عليا",
+          itemListElement: services.map((service) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: service.shortTitle,
+              url: `${site.url}/services/${service.slug}`,
             },
           })),
         },
@@ -50,7 +52,7 @@ export function StructuredData() {
         url: site.url,
         name: site.name,
         inLanguage: "ar-SA",
-        publisher: { "@id": `${site.url}/#organization` },
+        publisher: { "@id": `${site.url}/#business` },
       },
     ],
   };

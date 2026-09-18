@@ -1,21 +1,23 @@
-import Image from "next/image";
 import Link from "next/link";
+import { PaintRoller } from "lucide-react";
 
-export function BrandMark({ inverse = false, href = "/" }: { inverse?: boolean; href?: string }) {
+export function BrandMark({ inverse = false }: { inverse?: boolean }) {
   return (
-    <Link
-      href={href}
-      className={`brand-mark inline-flex shrink-0 items-center rounded-2xl px-2.5 py-2 transition-transform duration-300 hover:-translate-y-0.5 ${inverse ? "bg-white" : "bg-white/92"}`}
-      aria-label="ALYA CHEMICAL - Home"
-    >
-      <Image
-        src="/brand/alya-chemical.webp"
-        alt="ALYA CHEMICAL For Industry Ltd."
-        width={456}
-        height={129}
-        priority
-        className="h-auto w-[154px] sm:w-[180px]"
-      />
+    <Link href="/" className="brand-mark group inline-flex items-center gap-3" aria-label="دهانات عليا - الرئيسية">
+      <span className="brand-symbol relative grid size-12 place-items-center overflow-hidden rounded-[16px] bg-[#d5a557] text-[#17201c] shadow-[0_12px_32px_rgba(180,128,45,.2)]">
+        <span className="absolute inset-x-0 bottom-0 h-[7px] bg-[#b47b28]" />
+        <span className="brand-symbol-icon relative grid size-8 place-items-center rounded-xl bg-white/82">
+          <PaintRoller className="size-[18px]" strokeWidth={2.2} aria-hidden="true" />
+        </span>
+      </span>
+      <span className="leading-[1.15]">
+        <span className={`block text-[1.04rem] font-black tracking-[-.02em] ${inverse ? "text-white" : "text-[#17201c]"}`}>
+          دهانات عليا
+        </span>
+        <span className={`mt-1 block text-[.66rem] font-bold tracking-[.15em] ${inverse ? "text-white/48" : "text-[#7c6b53]"}`}>
+          ALYA PAINTS
+        </span>
+      </span>
     </Link>
   );
 }

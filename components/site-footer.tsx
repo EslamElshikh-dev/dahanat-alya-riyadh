@@ -1,59 +1,45 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { ArrowUpLeft, Mail, MapPin, Phone } from "lucide-react";
+import { Clock3, MapPin, MessageCircle, Phone } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
-import { navigationAr, navigationEn, site } from "@/data/site";
+import { defaultWhatsAppMessage, navigation, site, whatsappUrl } from "@/data/site";
 
 export function SiteFooter() {
-  const pathname = usePathname();
-  const isEnglish = pathname === "/en" || pathname.startsWith("/en/");
-  const navigation = isEnglish ? navigationEn : navigationAr;
-  const productsHref = isEnglish ? "/en/products" : "/products";
-
   return (
-    <footer className="relative overflow-hidden bg-[#061725] pb-24 pt-16 text-white sm:pb-8 sm:pt-20" dir={isEnglish ? "ltr" : "rtl"}>
-      <div className="pointer-events-none absolute -left-36 top-0 size-96 rounded-full bg-[#0ea4bc]/10 blur-3xl" />
-      <div className="container-shell relative grid gap-12 lg:grid-cols-[1.15fr_.65fr_.8fr]">
+    <footer className="bg-[#101713] pb-24 pt-18 text-white sm:pb-8">
+      <div className="container-shell grid gap-12 lg:grid-cols-[1.15fr_.65fr_1fr]">
         <div>
-          <BrandMark inverse href={isEnglish ? "/en" : "/"} />
-          <p className="mt-6 max-w-md text-[1rem] leading-8 text-white/58">
-            {isEnglish
-              ? "Advanced thermal insulation, waterproofing and architectural coating systems engineered for resilient buildings."
-              : "أنظمة متطورة للعزل الحراري والمائي والدهانات المعمارية، صُممت لحماية المباني ورفع كفاءة الأسطح والواجهات."}
+          <BrandMark inverse />
+          <p className="mt-6 max-w-md text-[1rem] leading-8 text-white/56">
+            تنفيذ دهانات وتشطيبات وديكورات للمنازل والفلل والمكاتب في الرياض، بخطوات واضحة من المعاينة حتى المراجعة النهائية.
           </p>
-          <div className="mt-6 flex gap-2">
-            <a href={site.social.instagram} target="_blank" rel="noreferrer" className="social-link text-[.68rem] font-black" aria-label="Instagram">IG</a>
-            <a href={site.social.linkedin} target="_blank" rel="noreferrer" className="social-link text-[.68rem] font-black" aria-label="LinkedIn">in</a>
-            <a href={site.social.tiktok} target="_blank" rel="noreferrer" className="social-link px-3 text-xs font-black" aria-label="TikTok">TikTok</a>
-          </div>
+          <a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[.06] px-4 py-3 text-sm font-black text-white transition-colors hover:bg-white/10">
+            <MessageCircle className="size-4 text-[#63c79d]" /> تواصل عبر واتساب
+          </a>
         </div>
-
         <div>
-          <h2 className="text-sm font-black text-[#57d0d4]">{isEnglish ? "Explore" : "روابط الموقع"}</h2>
-          <nav className="mt-5 grid gap-3" aria-label={isEnglish ? "Footer links" : "روابط التذييل"}>
+          <h2 className="text-sm font-black text-[#dcb66f]">روابط الموقع</h2>
+          <nav className="mt-5 grid gap-3" aria-label="روابط التذييل">
             {navigation.map((item) => (
-              <Link key={item.href} href={item.href} className="footer-link">{item.label}</Link>
+              <Link key={item.href} href={item.href} className="w-fit text-white/58 transition-colors hover:text-white">
+                {item.label}
+              </Link>
             ))}
-            <Link href={`${productsHref}#thermal`} className="footer-link">{isEnglish ? "Alya Thermal" : "عليا ثيرمال"}</Link>
-            <Link href={`${productsHref}#paint`} className="footer-link">{isEnglish ? "Alya Paints" : "عليا للدهانات"}</Link>
           </nav>
         </div>
-
         <div>
-          <h2 className="text-sm font-black text-[#57d0d4]">{isEnglish ? "Contact" : "بيانات التواصل"}</h2>
+          <h2 className="text-sm font-black text-[#dcb66f]">بيانات التواصل</h2>
           <ul className="mt-5 grid gap-4 text-white/62">
-            <li className="footer-contact"><Phone className="size-4.5" /><a href={`tel:${site.phoneE164}`} dir="ltr">{site.phoneDisplay}</a></li>
-            <li className="footer-contact"><Mail className="size-4.5" /><a href={`mailto:${site.email}`}>{site.email}</a></li>
-            <li className="footer-contact items-start"><MapPin className="mt-1 size-4.5 shrink-0" /><a href={site.mapsUrl} target="_blank" rel="noreferrer">{isEnglish ? site.addressEn : site.address}<ArrowUpLeft className="ms-1 inline size-3.5" /></a></li>
+            <li className="flex items-start gap-3"><span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/[.06] text-[#dcb66f]"><Phone className="size-4" /></span><a href={`tel:${site.phoneE164}`} dir="ltr" className="pt-1 hover:text-white">{site.phoneDisplay}</a></li>
+            <li className="flex items-start gap-3"><span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/[.06] text-[#dcb66f]"><MapPin className="size-4" /></span><span className="pt-1">{site.coverage}<small className="mt-1 block text-white/38">بدون مقر ثابت لاستقبال العملاء</small></span></li>
+            <li className="flex items-start gap-3"><span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/[.06] text-[#dcb66f]"><Clock3 className="size-4" /></span><span className="pt-1">استقبال طلبات المعاينة يوميًا</span></li>
           </ul>
         </div>
       </div>
-
-      <div className="container-shell relative mt-14 flex flex-col gap-3 border-t border-white/10 pt-7 text-sm text-white/38 sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} {isEnglish ? site.englishName : site.name}. {isEnglish ? "All rights reserved." : "جميع الحقوق محفوظة."}</p>
-        <a href={site.developerUrl} target="_blank" rel="noreferrer" className="w-fit transition-colors hover:text-white">{site.developerName}</a>
+      <div className="container-shell mt-14 flex flex-col gap-3 border-t border-white/8 pt-7 text-sm text-white/38 sm:flex-row sm:items-center sm:justify-between">
+        <p>© {new Date().getFullYear()} {site.shortName}. جميع الحقوق محفوظة.</p>
+        <a href={site.developerUrl} target="_blank" rel="noreferrer" className="w-fit transition-colors hover:text-white">
+          {site.developerName}
+        </a>
       </div>
     </footer>
   );
