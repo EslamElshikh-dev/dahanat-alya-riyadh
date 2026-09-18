@@ -22,7 +22,12 @@ export default function ContactPage() {
             <Button asChild size="lg" className="mt-8 h-14 rounded-2xl bg-[#1c805a] px-8 text-base font-black hover:bg-[#176b4b]"><a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer"><MessageCircle /> افتح واتساب</a></Button>
           </div>
           <div className="grid gap-4 sm:grid-cols-2" data-reveal="up">
-            <a href={`tel:${site.phoneE164}`} className="feature-card rounded-[24px] bg-[#111914] p-7 text-white"><span className="grid size-12 place-items-center rounded-[15px] bg-white/8 text-[#ddb770]"><Phone className="size-6" /></span><p className="mt-8 text-sm font-bold text-white/45">اتصال مباشر</p><p className="mt-2 text-2xl font-black" dir="ltr">{site.phoneDisplay}</p></a>
+            <div className="feature-card rounded-[24px] bg-[#111914] p-7 text-white">
+              <span className="grid size-12 place-items-center rounded-[15px] bg-white/8 text-[#ddb770]"><Phone className="size-6" /></span>
+              <p className="mt-8 text-sm font-bold text-white/45">الرقم الأساسي</p>
+              <a href={`tel:${site.phoneE164}`} className="mt-2 inline-block text-2xl font-black hover:text-[#ddb770]" dir="ltr">{site.phoneDisplay}</a>
+              <p className="mt-3 text-sm text-white/55">رقم بديل: <a href={`tel:${site.alternatePhoneE164}`} className="font-bold hover:text-white" dir="ltr">{site.alternatePhoneDisplay}</a></p>
+            </div>
             <a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer" className="feature-card rounded-[24px] bg-[#1c805a] p-7 text-white"><span className="grid size-12 place-items-center rounded-[15px] bg-white/12"><MessageCircle className="size-6" /></span><p className="mt-8 text-sm font-bold text-white/60">واتساب</p><p className="mt-2 text-xl font-black">أرسل الصور والتفاصيل</p></a>
             <div className="feature-card rounded-[24px] border border-[#17201c]/8 bg-white p-7"><span className="grid size-12 place-items-center rounded-[15px] bg-[#f3eadb] text-[#9a6928]"><MapPin className="size-6" /></span><p className="mt-8 text-sm font-bold text-[#7a837e]">نطاق الخدمة</p><p className="mt-2 text-xl font-black">{site.coverage}</p><p className="mt-3 text-sm leading-6 text-[#69736e]">{site.serviceNotice}</p></div>
             <div className="feature-card rounded-[24px] border border-[#17201c]/8 bg-white p-7"><span className="grid size-12 place-items-center rounded-[15px] bg-[#f3eadb] text-[#9a6928]"><Clock3 className="size-6" /></span><p className="mt-8 text-sm font-bold text-[#7a837e]">المواعيد</p><p className="mt-2 text-xl font-black">استقبال الطلبات يوميًا</p></div>

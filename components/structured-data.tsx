@@ -15,13 +15,22 @@ export function StructuredData() {
         logo: `${site.url}/favicon.svg`,
         telephone: site.phoneE164,
         description: site.description,
-        contactPoint: {
-          "@type": "ContactPoint",
-          telephone: site.phoneE164,
-          contactType: "customer service",
-          areaServed: "SA",
-          availableLanguage: ["ar"],
-        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            telephone: site.phoneE164,
+            contactType: "customer service",
+            areaServed: "SA",
+            availableLanguage: ["ar"],
+          },
+          {
+            "@type": "ContactPoint",
+            telephone: site.alternatePhoneE164,
+            contactType: "customer service",
+            areaServed: "SA",
+            availableLanguage: ["ar"],
+          },
+        ],
         areaServed: {
           "@type": "City",
           name: site.city,
