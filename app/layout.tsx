@@ -29,7 +29,10 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
-  verification: {\n    google: "a5AfDDI67VsUYxqSvx00gPy5bqSb1V9YoZ1DX8-GkxY",\n  },\n  openGraph: {
+  verification: {
+    google: "a5AfDDI67VsUYxqSvx00gPy5bqSb1V9YoZ1DX8-GkxY",
+  },
+  openGraph: {
     type: "website",
     locale: "ar_SA",
     url: "/",
