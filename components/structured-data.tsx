@@ -6,7 +6,7 @@ export function StructuredData() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "HousePainter",
+        "@type": site.schemaType,
         "@id": `${site.url}/#business`,
         name: site.name,
         alternateName: site.englishName,
@@ -23,13 +23,6 @@ export function StructuredData() {
             areaServed: "SA",
             availableLanguage: ["ar"],
           },
-          {
-            "@type": "ContactPoint",
-            telephone: site.alternatePhoneE164,
-            contactType: "customer service",
-            areaServed: "SA",
-            availableLanguage: ["ar"],
-          },
         ],
         areaServed: {
           "@type": "City",
@@ -42,9 +35,10 @@ export function StructuredData() {
           addressRegion: site.region,
           addressCountry: "SA",
         },
+        // Only published service pages have offers; product prices and stock are not published.
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "خدمات دهانات عليا",
+          name: "خدمات تنفيذ دهانات عليا",
           itemListElement: services.map((service) => ({
             "@type": "Offer",
             itemOffered: {

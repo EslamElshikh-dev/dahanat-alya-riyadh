@@ -4,7 +4,7 @@ import { CheckCircle2, Eye, Layers3, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "عن دهانات عليا",
-  description: "تعرف على طريقة عمل دهانات عليا في تنفيذ الدهانات والتشطيبات والديكورات داخل مدينة الرياض.",
+  description: "تعرف على متجر دهانات عليا وحلول الألوان وخدمات تنفيذ الدهانات والتشطيبات في الرياض.",
   alternates: { canonical: "/about" },
 };
 
@@ -22,7 +22,7 @@ export default function AboutPage() {
           <div className="hero-enter">
             <span className="section-kicker !text-[#dcb66f]">عن دهانات عليا</span>
             <h1 className="section-title mt-5 max-w-[15ch]">ننظر إلى التشطيب من زاوية الاستخدام، لا اللون وحده.</h1>
-            <p className="mt-6 text-lg leading-9 text-white/62">نقدم خدمات دهان وتشطيب وديكور للمنازل والفلل والمكاتب في الرياض. تبدأ طريقتنا بفهم حالة الموقع والنتيجة المطلوبة، ثم ترتيب المواد والمراحل والتفاصيل بما يناسب المساحة.</p>
+            <p className="mt-6 text-lg leading-9 text-white/62">دهانات عليا متجر دهانات في الرياض يقدم حلول الألوان والدهانات الداخلية والخارجية، إلى جانب خدمات الدهان والتشطيب والديكور للمنازل والفلل والمكاتب. نفهم احتياج المساحة أولًا، ثم نرتب اختيار المواد ومراحل التنفيذ بحسب المشروع.</p>
           </div>
           <div className="hero-visual-enter relative min-h-[420px] overflow-hidden rounded-[28px] border border-white/10 shadow-[0_30px_85px_rgba(0,0,0,.28)] sm:min-h-[560px]"><Image src="/hero-interior.webp" alt="فني دهانات ينفذ تشطيب جدار داخلي بعناية" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" /></div>
         </div>

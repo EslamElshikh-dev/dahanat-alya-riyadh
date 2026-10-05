@@ -62,18 +62,18 @@ export default function Home() {
         <div className="container-shell grid min-h-[690px] items-center gap-12 py-14 lg:grid-cols-[.92fr_1.08fr] lg:gap-16 lg:py-20">
           <div className="hero-enter relative z-10">
             <p className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[.055] px-4 py-2 text-sm font-bold text-[#e4c58c] backdrop-blur-md">
-              <MapPin className="size-4" aria-hidden="true" /> دهانات وتشطيبات في الرياض
+              <MapPin className="size-4" aria-hidden="true" /> متجر دهانات وخدمات تشطيب في الرياض
             </p>
             <h1 className="display-title mt-7">
-              تشطيب يرفع قيمة <span className="text-[#d8a95c]">المكان</span> ويعيش بتفاصيله.
+              دهانات عليا: ألوان تليق <span className="text-[#d8a95c]">بمكانك</span> وتشطيب متقن.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-8 text-white/68 sm:text-lg sm:leading-9">
-              ننفذ الدهانات والديكورات والترميمات للمنازل والفلل بخطوات واضحة، من تجهيز السطح واختيار الخامات حتى المراجعة النهائية.
+              نوفر حلول الدهانات الداخلية والخارجية ونساعدك في اختيار اللون المناسب، مع خدمات تنفيذ الدهانات والديكورات للمنازل والفلل في الرياض.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild size="lg" className="h-14 rounded-2xl bg-[#d1a052] px-7 text-base font-black text-[#142019] shadow-[0_15px_36px_rgba(205,156,78,.2)] hover:bg-[#e0b66e]">
                 <a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer">
-                  <MessageCircle className="size-5" /> اطلب معاينة عبر واتساب
+                  <MessageCircle className="size-5" /> اسأل عن الدهانات عبر واتساب
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-14 rounded-2xl border-white/18 bg-white/[.055] px-7 text-base font-black text-white backdrop-blur-md hover:bg-white hover:text-[#17201c]">

@@ -17,12 +17,12 @@ const alexandria = Alexandria({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "دهانات عليا Alya Paints | دهان وتشطيبات بالرياض",
+    default: "دهانات عليا Alya Paints | متجر دهانات بالرياض",
     template: "%s | دهانات عليا",
   },
   description: site.description,
   applicationName: site.name,
-  category: "Home Services",
+  category: site.category,
   alternates: { canonical: "/" },
   robots: {
     index: true,
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     locale: "ar_SA",
     url: "/",
     siteName: site.name,
-    title: "دهانات عليا Alya Paints | دهان وتشطيبات بالرياض",
+    title: "دهانات عليا Alya Paints | متجر دهانات بالرياض",
     description: site.description,
     images: [{ url: "/hero-interior.webp", width: 1200, height: 630, alt: "دهانات عليا Alya Paints في الرياض" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "دهانات عليا Alya Paints | دهان وتشطيبات بالرياض",
+    title: "دهانات عليا Alya Paints | متجر دهانات بالرياض",
     description: site.description,
     images: ["/hero-interior.webp"],
   },

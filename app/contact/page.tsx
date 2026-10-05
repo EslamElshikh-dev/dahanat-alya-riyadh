@@ -6,7 +6,7 @@ import { defaultWhatsAppMessage, site, whatsappUrl } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "تواصل مع دهانات عليا",
-  description: `اتصل على ${site.phoneRaw} أو تواصل عبر واتساب لطلب معاينة لخدمات الدهانات والتشطيبات في الرياض.`,
+  description: `اتصل على ${site.phoneRaw} أو تواصل عبر واتساب للاستفسار عن الدهانات وخدمات التنفيذ في الرياض.`,
   alternates: { canonical: "/contact" },
 };
 
@@ -24,9 +24,8 @@ export default function ContactPage() {
           <div className="grid gap-4 sm:grid-cols-2" data-reveal="up">
             <div className="feature-card rounded-[24px] bg-[#111914] p-7 text-white">
               <span className="grid size-12 place-items-center rounded-[15px] bg-white/8 text-[#ddb770]"><Phone className="size-6" /></span>
-              <p className="mt-8 text-sm font-bold text-white/45">الرقم الأساسي</p>
+              <p className="mt-8 text-sm font-bold text-white/45">رقم التواصل</p>
               <a href={`tel:${site.phoneE164}`} className="mt-2 inline-block text-2xl font-black hover:text-[#ddb770]" dir="ltr">{site.phoneDisplay}</a>
-              <p className="mt-3 text-sm text-white/55">رقم بديل: <a href={`tel:${site.alternatePhoneE164}`} className="font-bold hover:text-white" dir="ltr">{site.alternatePhoneDisplay}</a></p>
             </div>
             <a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer" className="feature-card rounded-[24px] bg-[#1c805a] p-7 text-white"><span className="grid size-12 place-items-center rounded-[15px] bg-white/12"><MessageCircle className="size-6" /></span><p className="mt-8 text-sm font-bold text-white/60">واتساب</p><p className="mt-2 text-xl font-black">أرسل الصور والتفاصيل</p></a>
             <div className="feature-card rounded-[24px] border border-[#17201c]/8 bg-white p-7"><span className="grid size-12 place-items-center rounded-[15px] bg-[#f3eadb] text-[#9a6928]"><MapPin className="size-6" /></span><p className="mt-8 text-sm font-bold text-[#7a837e]">نطاق الخدمة</p><p className="mt-2 text-xl font-black">{site.coverage}</p><p className="mt-3 text-sm leading-6 text-[#69736e]">{site.serviceNotice}</p></div>

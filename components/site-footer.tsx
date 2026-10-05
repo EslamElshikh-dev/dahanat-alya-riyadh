@@ -10,7 +10,7 @@ export function SiteFooter() {
         <div>
           <BrandMark inverse />
           <p className="mt-6 max-w-md text-[1rem] leading-8 text-white/56">
-            تنفيذ دهانات وتشطيبات وديكورات للمنازل والفلل والمكاتب في الرياض، بخطوات واضحة من المعاينة حتى المراجعة النهائية.
+            متجر دهانات عليا في الرياض لحلول الألوان والدهانات الداخلية والخارجية، مع خدمات تنفيذ وتشطيب للمنازل والفلل والمكاتب.
           </p>
           <a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[.06] px-4 py-3 text-sm font-black text-white transition-colors hover:bg-white/10">
             <MessageCircle className="size-4 text-[#63c79d]" /> تواصل عبر واتساب
@@ -30,7 +30,7 @@ export function SiteFooter() {
           <h2 className="text-sm font-black text-[#dcb66f]">بيانات التواصل</h2>
           <ul className="mt-5 grid gap-4 text-white/62">
             <li className="flex items-start gap-3"><span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/[.06] text-[#dcb66f]"><Phone className="size-4" /></span><a href={`tel:${site.phoneE164}`} dir="ltr" className="pt-1 hover:text-white">{site.phoneDisplay}</a></li>
-            <li className="flex items-start gap-3"><span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/[.06] text-[#dcb66f]"><MapPin className="size-4" /></span><span className="pt-1">{site.coverage}<small className="mt-1 block text-white/38">بدون مقر ثابت لاستقبال العملاء</small></span></li>
+            <li className="flex items-start gap-3"><span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/[.06] text-[#dcb66f]"><MapPin className="size-4" /></span><span className="pt-1">{site.coverage}<small className="mt-1 block text-white/38">تواصل معنا لتأكيد توفر المنتج أو موعد الخدمة</small></span></li>
             <li className="flex items-start gap-3"><span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/[.06] text-[#dcb66f]"><Clock3 className="size-4" /></span><span className="pt-1">استقبال طلبات المعاينة يوميًا</span></li>
           </ul>
         </div>

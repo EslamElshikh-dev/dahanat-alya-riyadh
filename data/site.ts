@@ -2,24 +2,21 @@ export const site = {
   name: "دهانات عليا Alya Paints",
   shortName: "دهانات عليا",
   englishName: "Alya Paints",
-  category: "دهّان",
-  schemaType: "HousePainter",
-  // Keep the primary number aligned with the Google Business Profile.
-  phoneDisplay: "055 768 2484",
-  phoneRaw: "0557682484",
-  phoneE164: "+966557682484",
-  whatsapp: "966557682484",
-  alternatePhoneDisplay: "055 298 0261",
-  alternatePhoneRaw: "0552980261",
-  alternatePhoneE164: "+966552980261",
+  category: "متجر دهانات",
+  schemaType: "Store",
+  // Use one primary contact number consistently across visible links and structured data.
+  phoneDisplay: "055 298 0261",
+  phoneRaw: "0552980261",
+  phoneE164: "+966552980261",
+  whatsapp: "966552980261",
   city: "الرياض",
   region: "منطقة الرياض",
   country: "المملكة العربية السعودية",
   coverage: "جميع أحياء مدينة الرياض",
-  serviceNotice: "نشاط بنطاق خدمة داخل الرياض ولا يستقبل العملاء في مقر ثابت.",
+  serviceNotice: "تواصل معنا لتأكيد توفر الدهانات والمنتجات أو لترتيب موعد معاينة خدمة التنفيذ في الرياض.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://dahanat-alya-riyadh.vercel.app").replace(/\/$/, ""),
   description:
-    "دهانات عليا Alya Paints لتنفيذ الدهانات الداخلية والخارجية وتشطيبات المنازل والفلل والديكورات في الرياض، من تجهيز الأسطح واختيار الألوان حتى التسليم المنظم.",
+    "دهانات عليا Alya Paints متجر دهانات في الرياض للدهانات الداخلية والخارجية وحلول الألوان، مع خدمات تنفيذ الدهانات والتشطيبات والديكورات للمنازل والفلل.",
   developerName: "المهندس إسلام الشيخ",
   developerUrl: "https://eslam-elshikh.com",
 } as const;
@@ -35,4 +32,4 @@ export const whatsappUrl = (message: string) =>
   `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(message)}`;
 
 export const defaultWhatsAppMessage =
-  "السلام عليكم، أرغب في طلب معاينة والاستفسار عن خدمات دهانات عليا Alya Paints في الرياض.";
+  "السلام عليكم، أرغب في الاستفسار عن دهانات عليا Alya Paints والمنتجات أو خدمات التنفيذ في الرياض.";
