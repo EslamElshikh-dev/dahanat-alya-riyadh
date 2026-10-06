@@ -37,3 +37,7 @@ for (const [assetPath, data] of Object.entries(assets)) {
   await writeFile(destination, Buffer.from(data, "base64"));
 }
 console.log(`Prepared ${Object.keys(assets).length} catalog images`);
+
+// Keep the approved developer mark local to this site.
+const developerMark = Buffer.from(await readFile(path.join(root, "catalog-sources/developer-mark.b64"), "utf8"), "base64");
+await writeFile(path.join(root, "public/developer-mark.webp"), developerMark);
