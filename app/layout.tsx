@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Alexandria } from "next/font/google";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import { FloatingContact } from "@/components/floating-contact";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -7,9 +7,9 @@ import { StructuredData } from "@/components/structured-data";
 import { site } from "@/data/site";
 import "./globals.css";
 
-const alexandria = Alexandria({
+const arabic = IBM_Plex_Sans_Arabic({
   subsets: ["arabic"],
-  weight: "variable",
+  weight: ["400", "500", "600", "700"],
   variable: "--font-arabic",
   display: "swap",
 });
@@ -39,13 +39,13 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: "دهانات عليا Alya Paints | متجر دهانات بالرياض",
     description: site.description,
-    images: [{ url: "/hero-interior.webp", width: 1200, height: 630, alt: "دهانات عليا Alya Paints في الرياض" }],
+    images: [{ url: "/hero-color-story.webp", width: 1536, height: 1024, alt: "دهانات عليا Alya Paints في الرياض" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "دهانات عليا Alya Paints | متجر دهانات بالرياض",
     description: site.description,
-    images: ["/hero-interior.webp"],
+    images: ["/hero-color-story.webp"],
   },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg", apple: "/favicon.svg" },
 };
@@ -53,13 +53,13 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#171714",
+  themeColor: "#235d71",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={alexandria.variable}>
+      <body className={arabic.variable}>
         <StructuredData />
         <SiteHeader />
         {children}
@@ -69,3 +69,4 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
+

@@ -1,23 +1,7 @@
 import Link from "next/link";
-import { PaintRoller } from "lucide-react";
-
+export function BrandSymbol({ className = "" }: { className?: string }) {
+  return <svg viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true"><path d="M7 52 26 14C29 8 33 7 37 11L42 19 24 52C21 57 11 58 7 52Z" fill="#235D71"/><path d="m35 12 22 37c4 7-2 11-9 8L30 27l5-15Z" fill="#DB684E"/><path d="M25 39c8-5 15-5 22 0l5 9c-10-5-21-4-33 2l6-11Z" fill="#F2C978"/></svg>;
+}
 export function BrandMark({ inverse = false }: { inverse?: boolean }) {
-  return (
-    <Link href="/" className="brand-mark group inline-flex items-center gap-3" aria-label="دهانات عليا - الرئيسية">
-      <span className="brand-symbol relative grid size-12 place-items-center overflow-hidden rounded-[16px] bg-[#d5a557] text-[#17201c] shadow-[0_12px_32px_rgba(180,128,45,.2)]">
-        <span className="absolute inset-x-0 bottom-0 h-[7px] bg-[#b47b28]" />
-        <span className="brand-symbol-icon relative grid size-8 place-items-center rounded-xl bg-white/82">
-          <PaintRoller className="size-[18px]" strokeWidth={2.2} aria-hidden="true" />
-        </span>
-      </span>
-      <span className="leading-[1.15]">
-        <span className={`block text-[1.04rem] font-black tracking-[-.02em] ${inverse ? "text-white" : "text-[#17201c]"}`}>
-          دهانات عليا
-        </span>
-        <span className={`mt-1 block text-[.66rem] font-bold tracking-[.15em] ${inverse ? "text-white/48" : "text-[#7c6b53]"}`}>
-          ALYA PAINTS
-        </span>
-      </span>
-    </Link>
-  );
+  return <Link href="/" className={`brand-mark ${inverse ? "brand-inverse" : ""}`} aria-label="دهانات عليا - الرئيسية"><BrandSymbol className="brand-symbol"/><span className="brand-wordmark"><strong>دهانات عليا</strong><span dir="ltr">ALYA PAINTS</span></span></Link>;
 }

@@ -1,36 +1,14 @@
-import { ArrowUpLeft, MessageCircle } from "lucide-react";
-import type { Catalog } from "@/data/catalogs";
-import { productAnchor, productDisplay } from "@/data/product-display";
+import Link from "next/link";
+import { ArrowUpLeft, Plus } from "lucide-react";
+import type { Catalog, CatalogProduct } from "@/data/catalogs";
+import { ProductPackshot } from "@/components/product-packshot";
+import { productAnchor } from "@/data/product-display";
+import { productTones } from "@/data/products";
 import { whatsappUrl } from "@/data/site";
-
+export function ProductCard({ product, index = 0 }: { product: CatalogProduct; index?: number }) {
+  const slug = productAnchor(product.name);
+  return <article className="product-card" id={slug}><Link href={`/products/${slug}`} className="product-stage" style={{backgroundColor:productTones[index % productTones.length]}} aria-label={`تفاصيل ${product.title}`}><span className="stage-label" aria-hidden="true" dir="ltr">ALYA / {String(index+1).padStart(2,"0")}</span><span className="stage-detail" aria-hidden="true"><ArrowUpLeft size={20}/></span><div className="stage-disc" aria-hidden="true"/><ProductPackshot product={product} suffix="card"/><span className="stage-name" aria-hidden="true" dir="ltr">{product.name.replace("ALYA ","")}</span></Link><div className="product-info"><span className="product-english" dir="ltr">{product.name}</span><Link href={`/products/${slug}`}><h3>{product.title}</h3></Link><p>{product.use}</p><div className="product-actions"><Link href={`/products/${slug}`}>اكتشف المنتج <ArrowUpLeft size={16}/></Link><a href={whatsappUrl(`السلام عليكم، أرغب في الاستفسار عن ${product.title} (${product.name}) وسعره وتوفره.`)} target="_blank" rel="noreferrer" aria-label={`استفسر عن ${product.title}`}><Plus size={18}/></a></div></div></article>;
+}
 export function CatalogProducts({ catalog }: { catalog: Catalog }) {
-  return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {catalog.products.map((product) => {
-        const anchor = productAnchor(product.name);
-        const display = productDisplay[product.name];
-        const clipId = `package-${anchor}`;
-        return (
-        <article id={anchor} key={product.name} className="product-catalog-card product-studio-card overflow-hidden rounded-[24px] border border-[#17201c]/9 bg-white">
-          <a href={`${catalog.file}#page=${product.page}`} target="_blank" rel="noopener noreferrer" className="product-studio" aria-label={`شاهد مواصفات ${product.title} في الكتالوج`}>
-            <span className="product-studio-brand" aria-hidden="true">ALYA</span>
-            <span className="product-studio-category">{catalog.label}</span>
-            <span className="product-studio-orbit" aria-hidden="true" />
-            <svg className="product-packshot" viewBox={display.viewBox} role="img" aria-label={`عبوة ${product.title}`}>
-              <defs><clipPath id={clipId}><path d={display.outline} /></clipPath></defs>
-              <image href={product.image} x="0" y="0" width="480" height="360" clipPath={`url(#${clipId})`} />
-            </svg>
-            <div className="product-studio-name"><span dir="ltr">{product.name}</span><h3>{product.title}</h3></div>
-          </a>
-          <div className="p-5">
-            <p className="min-h-12 text-sm leading-6 text-[#68736b]">{product.use}</p>
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-[#17201c]/8 pt-4">
-              <a href={`${catalog.file}#page=${product.page}`} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 items-center gap-1.5 text-xs font-black text-[#946a2c]">المواصفات<ArrowUpLeft className="size-3.5" aria-hidden="true" /></a>
-              <a href={whatsappUrl(`السلام عليكم، أرغب في الاستفسار عن منتج ${product.title} (${product.name}) وسعره وتوفره.`)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-10 items-center gap-1.5 rounded-lg bg-[#edf5ef] px-3 text-xs font-black text-[#1c7955]"><MessageCircle className="size-3.5" aria-hidden="true" />استفسر</a>
-            </div>
-          </div>
-        </article>
-      );})}
-    </div>
-  );
+  return <div className="product-grid">{catalog.products.map((product,index)=><ProductCard key={product.name} product={product} index={index}/>)}</div>;
 }

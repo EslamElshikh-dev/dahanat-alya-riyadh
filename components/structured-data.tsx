@@ -11,7 +11,7 @@ export function StructuredData() {
         name: site.name,
         alternateName: site.englishName,
         url: site.url,
-        image: `${site.url}/hero-interior.webp`,
+        image: `${site.url}/hero-color-story.webp`,
         logo: `${site.url}/favicon.svg`,
         telephone: site.phoneE164,
         description: site.description,
@@ -62,3 +62,4 @@ export function StructuredData() {
 
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
 }
+
