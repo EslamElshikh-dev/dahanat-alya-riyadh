@@ -32,6 +32,8 @@ for (const { slug, sha256, bytes } of catalogs) {
 const assets = JSON.parse(await readFile(path.join(root, "catalog-sources/assets.json"), "utf8"));
 await mkdir(path.join(root, "public/catalog-previews"), { recursive: true });
 for (const [assetPath, data] of Object.entries(assets)) {
-  await writeFile(path.join(root, "public", assetPath), Buffer.from(data, "base64"));
+  const destination = path.join(root, "public", assetPath);
+  await mkdir(path.dirname(destination), { recursive: true });
+  await writeFile(destination, Buffer.from(data, "base64"));
 }
 console.log(`Prepared ${Object.keys(assets).length} catalog images`);

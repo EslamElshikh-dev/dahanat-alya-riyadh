@@ -40,8 +40,8 @@ export const catalogs: Catalog[] = [
       { name: "ALYA PRIMER COLORED", title: "عليا أساس ملون", use: "تأسيس داخلي وخارجي", image: "/catalog-previews/primer-colored.webp", page: 6 },
       { name: "ALYA ECO", title: "عليا إيكو", use: "دهان داخلي اقتصادي للجدران والأسقف", image: "/catalog-previews/eco.webp", page: 8 },
       { name: "ALYA LUX", title: "عليا لوكس", use: "دهان داخلي للجدران والأسقف", image: "/catalog-previews/lux.webp", page: 9 },
-      { name: "ALYA CRYL", title: "عليا كريل", use: "دهان خارجي للواجهات", image: "/catalog-previews/cryl.webp", page: 11 },
-      { name: "ALYA TX", title: "عليا تي إكس", use: "تكسية دهان خارجي", image: "/catalog-previews/tx.webp", page: 13 },
+      { name: "ALYA CRYL", title: "عليا كريل", use: "دهان خارجي للواجهات", image: "/product-originals/cryl.webp", page: 11 },
+      { name: "ALYA TX", title: "عليا تي إكس", use: "تكسية دهان خارجي", image: "/product-originals/tx.webp", page: 13 },
     ],
   },
   {
@@ -59,8 +59,8 @@ export const catalogs: Catalog[] = [
     products: [
       { name: "ALYA PRIMER-T", title: "عليا برايمر تي", use: "دهان أساس ضمن مجموعة ثيرمال", image: "/catalog-previews/primer-t.webp", page: 5 },
       { name: "ALYA PROTECT-T", title: "عليا بروتكت تي", use: "طبقة حماية شفافة", image: "/catalog-previews/protect-t.webp", page: 5 },
-      { name: "ALYA WALL", title: "عليا وول", use: "طلاء للجدران ضمن مجموعة ثيرمال", image: "/catalog-previews/wall.webp", page: 8 },
-      { name: "ALYA ROOF", title: "عليا روف", use: "طلاء للأسطح ضمن مجموعة ثيرمال", image: "/catalog-previews/roof.webp", page: 9 },
+      { name: "ALYA WALL", title: "عليا وول", use: "طلاء للجدران ضمن مجموعة ثيرمال", image: "/product-originals/wall.webp", page: 8 },
+      { name: "ALYA ROOF", title: "عليا روف", use: "طلاء للأسطح ضمن مجموعة ثيرمال", image: "/product-originals/roof.webp", page: 9 },
       { name: "ALYA PIPE", title: "عليا بايب", use: "طلاء للأنابيب", image: "/catalog-previews/pipe.webp", page: 10 },
       { name: "ALYA STONE", title: "عليا ستون", use: "طلاء شفاف لحماية الحجر", image: "/catalog-previews/stone.webp", page: 11 },
     ],
