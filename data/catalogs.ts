@@ -5,6 +5,13 @@ export type CatalogProduct = {
   description: string;
   image: string;
   page: number;
+  slug?: string;
+  price?: number | null;
+  availability?: "unspecified" | "in-stock" | "out-of-stock" | "preorder";
+  packshotKey?: string;
+  customImage?: boolean;
+  tone?: string;
+  accent?: string;
 };
 
 export type Catalog = {

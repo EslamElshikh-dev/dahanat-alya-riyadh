@@ -1,10 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans_Arabic, Alexandria } from "next/font/google";
-import { FloatingContact } from "@/components/floating-contact";
-import { SiteFooter } from "@/components/site-footer";
-import { ScrollReveal } from "@/components/scroll-reveal";
-import { SiteHeader } from "@/components/site-header";
-import { StructuredData } from "@/components/structured-data";
 import { site } from "@/data/site";
 import "./globals.css";
 
@@ -68,12 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="ar" dir="rtl">
       <body className={`${arabic.variable} ${heading.variable}`}>
-        <StructuredData />
-        <SiteHeader />
-        <div id="main-content" tabIndex={-1}>{children}</div>
-        <SiteFooter />
-        <FloatingContact />
-        <ScrollReveal />
+        {children}
       </body>
     </html>
   );

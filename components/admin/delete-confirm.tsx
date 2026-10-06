@@ -1,0 +1,4 @@
+"use client";
+import {useEffect,useRef} from "react";
+import {LoaderCircle,Trash2} from "lucide-react";
+export function DeleteConfirm({title,busy,onClose,onConfirm}:{title:string;busy:boolean;onClose:()=>void;onConfirm:()=>void}){const ref=useRef<HTMLDialogElement>(null);useEffect(()=>{const modal=ref.current;modal?.showModal();return()=>modal?.close();},[]);return <dialog ref={ref} className="admin-modal admin-confirm" aria-labelledby="delete-title" onCancel={onClose}><span className="confirm-icon"><Trash2 size={27}/></span><h2 id="delete-title">نقل المنتج إلى المحذوفات؟</h2><p>سيُخفى «{title}» من الموقع.<br/>يمكنك استرجاعه من المحذوفات في أي وقت.</p><div><button className="admin-button admin-secondary" onClick={onClose} disabled={busy} autoFocus>إلغاء</button><button className="admin-button admin-danger" onClick={onConfirm} disabled={busy}>{busy?<LoaderCircle size={17} className="admin-spin"/>:<Trash2 size={17}/>}نقل إلى المحذوفات</button></div></dialog>;}
