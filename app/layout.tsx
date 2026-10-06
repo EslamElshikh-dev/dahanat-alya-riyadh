@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Sans_Arabic, Tajawal } from "next/font/google";
+import { IBM_Plex_Sans_Arabic, Alexandria } from "next/font/google";
 import { FloatingContact } from "@/components/floating-contact";
 import { SiteFooter } from "@/components/site-footer";
 import { ScrollReveal } from "@/components/scroll-reveal";
@@ -15,9 +15,9 @@ const arabic = IBM_Plex_Sans_Arabic({
   display: "swap",
 });
 
-const heading = Tajawal({
+const heading = Alexandria({
   subsets: ["arabic"],
-  weight: ["500", "700"],
+  weight: ["500", "600", "700"],
   variable: "--font-heading",
   display: "swap",
 });
