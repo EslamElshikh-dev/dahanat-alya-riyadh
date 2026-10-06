@@ -3,7 +3,8 @@ import { get, put, BlobPreconditionFailedError, BlobNotFoundError } from "@verce
 export class StoreConflict extends Error { constructor(){super("تم تحديث البيانات في جلسة أخرى. حدّث الصفحة ثم أعد المحاولة.");} }
 export function dataToken(){ const token=process.env.ALYA_DATA_BLOB_TOKEN; if(!token)throw new Error("التخزين غير متاح حاليًا."); return token; }
 export async function readRecord<T>(path:string):Promise<{value:T; version:string}|null>{
-  try { const blob=await get(`alya/${path}`,{access:"private",token:dataToken(),useCache:false});
+  // Compressed downloads return a weak ETag; conditional writes need the stored blob's strong ETag.
+  try { const blob=await get(`alya/${path}`,{access:"private",token:dataToken(),useCache:false,headers:{"Accept-Encoding":"identity"}});
     if(!blob||blob.statusCode!==200||!blob.stream)return null;
     return {value:JSON.parse(await new Response(blob.stream).text()) as T,version:blob.blob.etag};
   } catch(error){if(error instanceof BlobNotFoundError)return null;throw error;}
