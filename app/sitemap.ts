@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/data/services";
+import { catalogs } from "@/data/catalogs";
 import { site } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-10-05");
-  const pages = ["", "/services", "/about", "/contact"].map((path) => ({
+  const lastModified = new Date("2026-10-06");
+  const pages = ["", "/products", "/services", "/about", "/contact"].map((path) => ({
     url: `${site.url}${path}`,
     lastModified,
     changeFrequency: path === "" ? ("weekly" as const) : ("monthly" as const),
@@ -16,5 +17,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly" as const,
     priority: 0.85,
   }));
-  return [...pages, ...servicePages];
+  const catalogPages = catalogs.map((catalog) => ({
+    url: `${site.url}/products/${catalog.slug}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
+  return [...pages, ...catalogPages, ...servicePages];
 }

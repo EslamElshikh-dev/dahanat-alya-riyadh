@@ -23,6 +23,7 @@ export const site = {
 
 export const navigation = [
   { label: "الرئيسية", href: "/" },
+  { label: "المنتجات", href: "/products" },
   { label: "خدماتنا", href: "/services" },
   { label: "عن دهانات عليا", href: "/about" },
   { label: "تواصل معنا", href: "/contact" },

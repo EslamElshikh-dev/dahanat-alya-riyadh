@@ -16,6 +16,7 @@ import {
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { ServiceCard } from "@/components/service-card";
+import { CatalogSection } from "@/components/catalog-section";
 import { services } from "@/data/services";
 import { defaultWhatsAppMessage, site, whatsappUrl } from "@/data/site";
 
@@ -114,6 +115,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <CatalogSection />
 
       <section className="section-space bg-[#f8f7f3]" id="services">
         <div className="container-shell">
