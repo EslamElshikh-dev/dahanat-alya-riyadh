@@ -14,3 +14,5 @@
 .desktop-nav a[aria-current=page]::after{width:100%}.desktop-nav a[aria-current=page]{color:#b44b35}
 
 .hero-photo-caption{background:#173f536e;padding:7px 9px;border-radius:4px}
+
+.product-detail-copy>.product-english{text-align:right}
