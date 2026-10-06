@@ -21,7 +21,7 @@ export function ColorStudio() {
     </div>
     <div className="studio-copy"><span className="eyebrow"><Palette size={16}/> استوديو الإلهام</span><h2 id="studio-title" className="section-title">غيّر اللون،<br/><span>واكتشف الإحساس.</span></h2><p>بعض الألوان تهدّئ المكان، وبعضها تمنحه حضورًا.<br/>جرّب التناغمين، واختر الإلهام الأقرب لذوقك.</p>
       <div className="studio-options" aria-label="اختر التناغم اللوني">{scenes.map((item,index)=><button key={item.name} type="button" aria-pressed={selected===index} onClick={()=>setSelected(index)}><span className="studio-option-colors" aria-hidden="true">{item.colors.map(color=><i key={color.color} style={{backgroundColor:color.color}}/>)}</span><span>{item.title}</span><Check size={15} className="studio-option-check" aria-hidden="true"/></button>)}</div>
-      <div className="studio-description" aria-live="polite"><span dir="ltr">{scene.name}</span><h3>{scene.title}</h3><p>{scene.description}</p></div>
+      <div className="studio-description" aria-live="polite"><div className="studio-description-inner" key={scene.name}><span dir="ltr">{scene.name}</span><h3>{scene.title}</h3><p>{scene.description}</p></div></div>
       <a className="text-link" href={whatsappUrl(`السلام عليكم، أعجبني تناغم «${scene.title}» في استوديو الإلهام، وأرغب في المساعدة لاختيار درجات تناسب مساحتي وإضاءتها.`)} target="_blank" rel="noreferrer">نساعدك تختار درجاتك <ArrowUpLeft size={19}/></a>
     </div>
   </div></section>;
