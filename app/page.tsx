@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowUpLeft, Paintbrush, Layers3, MapPin } from "lucide-reac
 import { ColorStudio } from "@/components/color-studio";
 import { CatalogSection } from "@/components/catalog-section";
 import { ContactBand } from "@/components/contact-band";
+import { BusinessLocation } from "@/components/business-location";
 import { ServiceCard } from "@/components/service-card";
 import { services } from "@/data/services";
 import { defaultWhatsAppMessage, whatsappUrl } from "@/data/site";
@@ -16,5 +17,5 @@ export default function Home() {
   <ColorStudio/>
   <section className="section-space"><div className="container-shell"><div className="section-heading"><div><span className="eyebrow">نكمل معك التفاصيل</span><h2 className="section-title">من اختيار اللون،<br/>إلى جمال التنفيذ.</h2></div><div><p>خدمات دهانات وتشطيبات وديكورات في الرياض،<br/>تبدأ بفهم المكان والنتيجة التي تتطلع لها.</p><Link href="/services" className="text-link">اكتشف خدماتنا <ArrowLeft size={18}/></Link></div></div><div className="services-grid">{services.slice(0,3).map((service,index)=><ServiceCard key={service.slug} service={service} index={index}/>)}</div></div></section>
   <section className="faq-section section-space"><div className="container-shell faq-layout"><div><span className="eyebrow">قبل أن تبدأ</span><h2 className="section-title">اختيار أوضح.<br/>نتيجة أجمل.</h2></div><div className="faq-list">{faq.map((item,index)=><details key={item.question}><summary><span className="faq-number">0{index+1}</span>{item.question}<span className="faq-plus">+</span></summary><p>{item.answer}</p></details>)}</div></div></section>
-  <ContactBand/></main>;
+  <BusinessLocation/><ContactBand/></main>;
 }

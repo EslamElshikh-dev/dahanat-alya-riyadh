@@ -1,5 +1,5 @@
 import { services } from "@/data/services";
-import { site } from "@/data/site";
+import { businessLocation, site } from "@/data/site";
 
 export function StructuredData() {
   const data = {
@@ -15,12 +15,26 @@ export function StructuredData() {
         logo: `${site.url}/favicon.svg`,
         telephone: site.phoneE164,
         description: site.description,
+        sameAs: [businessLocation.mapsUrl],
+        hasMap: businessLocation.mapsUrl,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: businessLocation.latitude,
+          longitude: businessLocation.longitude,
+        },
+        openingHoursSpecification: [{
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: businessLocation.hours.days,
+          opens: businessLocation.hours.opens,
+          closes: businessLocation.hours.closes,
+        }],
         contactPoint: [
           {
             "@type": "ContactPoint",
             telephone: site.phoneE164,
             contactType: "customer service",
-            areaServed: "SA",
+            areaServed: { "@type": "City", name: site.city },
+            url: `${site.url}/contact`,
             availableLanguage: ["ar"],
           },
         ],
@@ -31,8 +45,10 @@ export function StructuredData() {
         },
         address: {
           "@type": "PostalAddress",
+          streetAddress: businessLocation.streetAddress,
           addressLocality: site.city,
           addressRegion: site.region,
+          postalCode: businessLocation.postalCode,
           addressCountry: "SA",
         },
         // Only published service pages have offers; product prices and stock are not published.
@@ -62,4 +78,3 @@ export function StructuredData() {
 
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
 }
-

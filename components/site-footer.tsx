@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { MapPin, Phone, ArrowUpLeft } from "lucide-react";
+import { MapPin, Phone, ArrowUpLeft, Clock3 } from "lucide-react";
 import { BrandMark } from "@/components/brand-mark";
 import { DeveloperSignature } from "@/components/developer-signature";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
-import { defaultWhatsAppMessage, navigation, site, whatsappUrl } from "@/data/site";
+import { businessLocation, defaultWhatsAppMessage, navigation, site, whatsappUrl } from "@/data/site";
 export function SiteFooter() {
  return <footer className="site-footer">
   <div className="footer-colour-line" aria-hidden="true"><i /><i /><i /><i /><i /></div>
@@ -15,7 +15,8 @@ export function SiteFooter() {
    <div className="footer-contact-card"><h2>خلّنا نكمل تفاصيل لونك</h2><div className="footer-contact">
     <a href={`tel:${site.phoneE164}`} className="footer-phone-link"><span className="footer-contact-icon"><Phone size={19} /></span><span><small>اتصل بنا</small><strong dir="ltr">{site.phoneRaw}</strong></span><ArrowUpLeft size={17} /></a>
     <a href={whatsappUrl(defaultWhatsAppMessage)} target="_blank" rel="noreferrer"><span className="footer-contact-icon"><WhatsAppIcon width={19} height={19} /></span><span>تحدث معنا على واتساب</span><ArrowUpLeft size={17} /></a>
-    <span className="footer-location"><MapPin size={17} />الرياض، المملكة العربية السعودية</span>
+    <a className="footer-location" href={businessLocation.mapsUrl} target="_blank" rel="noopener noreferrer"><MapPin size={17} /><span>{businessLocation.district}، {site.city}<small>عرض الموقع على خرائط Google</small></span><ArrowUpLeft size={15} /></a>
+    <span className="footer-hours"><Clock3 size={15} />{businessLocation.hours.shortDisplay}</span>
    </div></div>
   </div><div className="footer-bottom"><p className="footer-copyright">© {new Date().getFullYear()} دهانات عليا. جميع الحقوق محفوظة.</p><DeveloperSignature /></div></div>
  </footer>;
