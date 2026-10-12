@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "node scripts/prepare-catalogs.mjs && next dev",
-    "build": "node scripts/prepare-product-model.mjs && node scripts/prepare-catalogs.mjs && next build",
+    "build": "node scripts/prepare-product-model.mjs && node scripts/prepare-catalogs.mjs && next build --webpack",
     "start": "next start",
     "lint": "eslint . --ignore-pattern .next"
   },
