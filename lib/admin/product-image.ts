@@ -7,9 +7,15 @@ const INPUT_SIZE = 320;
 const OUTPUT_SIZE = { width: 960, height: 1100 };
 let sessionPromise: Promise<InferenceSession> | undefined;
 
+function loadRuntime() {
+  // Disable native runtime telemetry before its first import/initialization.
+  process.env.ORT_DISABLE_TELEMETRY = "1";
+  return import("onnxruntime-node");
+}
+
 async function segmentationSession() {
   if (!sessionPromise) {
-    sessionPromise = import("onnxruntime-node").then(({ InferenceSession }) =>
+    sessionPromise = loadRuntime().then(({ InferenceSession }) =>
       InferenceSession.create(path.join(process.cwd(), "vendor/background-removal/u2netp.onnx"), {
         executionProviders: ["cpu"],
         intraOpNumThreads: 2,
@@ -22,7 +28,7 @@ async function segmentationSession() {
 }
 
 async function foregroundMask(image: Buffer, width: number, height: number) {
-  const { Tensor } = await import("onnxruntime-node");
+  const { Tensor } = await loadRuntime();
   const session = await segmentationSession();
   const rgb = await sharp(image).flatten({ background: "#fff" }).removeAlpha()
     .resize(INPUT_SIZE, INPUT_SIZE, { fit: "fill", kernel: "lanczos3" }).raw().toBuffer();
@@ -55,6 +61,7 @@ async function foregroundMask(image: Buffer, width: number, height: number) {
 function refineUniformBackground(pixels: Buffer, alpha: Buffer, width: number, height: number) {
   const corners = [0, width - 1, (height - 1) * width, width * height - 1];
   const background = [0, 1, 2].map(channel => corners.reduce((sum, pixel) => sum + pixels[pixel * 4 + channel], 0) / 4);
+  const darkBackdrop = Math.max(...background) <= 64;
   const distance = (pixel: number) => Math.hypot(...background.map((value, channel) => pixels[pixel * 4 + channel] - value));
   if (corners.some(pixel => distance(pixel) > 16)) return;
   // Only edge-connected background is cleared. Dark lettering inside the product is preserved.
@@ -62,21 +69,53 @@ function refineUniformBackground(pixels: Buffer, alpha: Buffer, width: number, h
   const queue = new Int32Array(width * height);
   let start = 0, end = 0;
   function visit(pixel: number) {
-    if (seen[pixel] || distance(pixel) > 30 || alpha[pixel] > 245) return;
+    // A confident model prediction can still include a rectangular backdrop.
+    // Clear high-confidence dark backdrops, while protecting white lids against bright backdrops.
+    if (seen[pixel] || distance(pixel) > 30 || (!darkBackdrop && alpha[pixel] > 245)) return;
     seen[pixel] = 1; queue[end++] = pixel;
   }
   for (let x = 0; x < width; x++) { visit(x); visit((height - 1) * width + x); }
   for (let y = 0; y < height; y++) { visit(y * width); visit(y * width + width - 1); }
-  while (start < end) {
-    const pixel = queue[start++];
-    const edge = Math.max(0, Math.min(1, (distance(pixel) - 8) / 22));
-    alpha[pixel] = Math.min(alpha[pixel], Math.round(edge * 255));
-    const x = pixel % width, y = Math.floor(pixel / width);
-    if (x > 0) visit(pixel - 1);
-    if (x < width - 1) visit(pixel + 1);
-    if (y > 0) visit(pixel - width);
-    if (y < height - 1) visit(pixel + width);
+  function clearConnected() {
+    while (start < end) {
+      const pixel = queue[start++];
+      const edge = Math.max(0, Math.min(1, (distance(pixel) - 8) / 22));
+      alpha[pixel] = Math.min(alpha[pixel], Math.round(edge * 255));
+      const x = pixel % width, y = Math.floor(pixel / width);
+      if (x > 0) visit(pixel - 1);
+      if (x < width - 1) visit(pixel + 1);
+      if (y > 0) visit(pixel - width);
+      if (y < height - 1) visit(pixel + width);
+    }
   }
+  clearConnected();
+  // Background visible through a thin metal handle may be enclosed by its wire.
+  // For a dark backdrop, bridge a thin neutral wire without clearing the wire itself or colored labels.
+  // Bright backdrops cannot use this step: a white lid can share their color.
+  if (!darkBackdrop) return;
+  const directions = [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [-1, 1], [1, -1], [-1, -1]];
+  for (let pixel = 0; pixel < seen.length; pixel++) {
+    if (seen[pixel] || distance(pixel) > 30) continue;
+    const x = pixel % width, y = Math.floor(pixel / width);
+    let bridge = false;
+    for (const [dx, dy] of directions) {
+      for (let radius = 2; radius <= 5; radius++) {
+        const nx = x + dx * radius, ny = y + dy * radius;
+        if (nx < 0 || nx >= width || ny < 0 || ny >= height || !seen[ny * width + nx]) continue;
+        let neutral = true, crossedWire = false;
+        for (let step = 1; step < radius; step++) {
+          const middle = (y + dy * step) * width + x + dx * step;
+          const rgb = [pixels[middle * 4], pixels[middle * 4 + 1], pixels[middle * 4 + 2]];
+          if (Math.max(...rgb) - Math.min(...rgb) > 24) { neutral = false; break; }
+          if (!seen[middle] && distance(middle) > 30) crossedWire = true;
+        }
+        if (neutral && crossedWire) { bridge = true; break; }
+      }
+      if (bridge) break;
+    }
+    if (bridge) visit(pixel);
+  }
+  clearConnected();
 }
 
 /** Segment uploaded photos, preserve their RGB pixels, and fit the complete product on a transparent canvas. */
