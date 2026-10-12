@@ -1,4 +1,6 @@
+# ONNX ships its CPU binaries; its optional accelerator download is unnecessary.
 allowBuilds:
   esbuild: true
   sharp: true
   unrs-resolver: true
+  onnxruntime-node: false
