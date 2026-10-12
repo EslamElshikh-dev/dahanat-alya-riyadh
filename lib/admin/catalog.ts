@@ -18,12 +18,14 @@ export function validateProduct(input:Record<string,unknown>,existing?:ManagedPr
   const local=/^\/(catalog-previews|product-originals)\/[a-z0-9-]+\.(webp|png|jpg)$/.test(image);
   const mediaHost=process.env.ALYA_MEDIA_HOST;
   if(!local){let url;try{url=new URL(image);}catch{throw new Error("ارفع صورة للمنتج من اللوحة.");}if(url.protocol!=="https:"||url.hostname!==mediaHost||!url.pathname.startsWith("/alya-products/"))throw new Error("الصورة يجب أن تكون مرفوعة من لوحة عليا.");}
+  const originalImage=input.originalImage?cleanText(input.originalImage,"الصورة الأصلية",1,600):existing?.originalImage;
+  if(originalImage){let url;try{url=new URL(originalImage);}catch{throw new Error("رابط الصورة الأصلية غير صالح.");}if(url.protocol!=="https:"||url.hostname!==mediaHost||!url.pathname.startsWith("/alya-products/"))throw new Error("الصورة الأصلية يجب أن تكون مرفوعة من لوحة عليا.");}
   let price:number|null=null;if(input.price!==""&&input.price!==null&&input.price!==undefined){price=Number(input.price);if(!Number.isFinite(price)||price<0||price>1000000||Math.round(price*100)/100!==price)throw new Error("السعر غير صالح. استخدم رقمًا حتى منزلتين عشريتين.");}
   const collection=input.collection==="Alya Thermal"?"Alya Thermal":"Alya Paints";
   if(!["published","draft"].includes(String(input.status)))throw new Error("حالة المنتج غير صالحة.");
   const availability=["unspecified","in-stock","out-of-stock","preorder"].includes(String(input.availability))?input.availability as ManagedProduct["availability"]:"unspecified";
   const now=new Date().toISOString(); const palette=getProductTheme(existing?.packshotKey||name);
-  return {id:existing?.id||randomUUID(),slug:existing?.slug||`${productAnchor(name)||"alya-product"}-${randomUUID().slice(0,8)}`,name,title,use,description,image,page:existing?.page||0,collection,category:collection==="Alya Thermal"?"الطلاءات والحماية":"الدهانات والتأسيس",price,availability,status:input.status as "published"|"draft",featured:input.featured===true,packshotKey:existing?.packshotKey,customImage:!local||existing?.customImage===true,tone:existing?.tone||palette.tone,accent:existing?.accent||palette.accent,createdAt:existing?.createdAt||now,updatedAt:now};
+  return {id:existing?.id||randomUUID(),slug:existing?.slug||`${productAnchor(name)||"alya-product"}-${randomUUID().slice(0,8)}`,name,title,use,description,image,originalImage,page:existing?.page||0,collection,category:collection==="Alya Thermal"?"الطلاءات والحماية":"الدهانات والتأسيس",price,availability,status:input.status as "published"|"draft",featured:input.featured===true,packshotKey:existing?.packshotKey,customImage:!local||existing?.customImage===true,tone:existing?.tone||palette.tone,accent:existing?.accent||palette.accent,createdAt:existing?.createdAt||now,updatedAt:now};
 }
 export async function mutateCatalog(action:string,input:Record<string,unknown>,version:string){
   const current=await ensureRecord<ProductStore>("catalog.json",initialCatalog);if(current.version!==version)throw new StoreConflict();

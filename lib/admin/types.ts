@@ -4,7 +4,7 @@ export type ManagedProduct = CatalogProduct & {
   id: string; slug: string; collection: string; category: string; price: number | null;
   availability: "unspecified" | "in-stock" | "out-of-stock" | "preorder";
   status: ProductStatus; featured: boolean; packshotKey?: string; customImage?: boolean;
-  tone: string; accent: string; createdAt: string; updatedAt: string; deletedAt?: string;
+  tone: string; accent: string; createdAt: string; updatedAt: string; deletedAt?: string; originalImage?: string;
 };
 export type Activity = { id: string; action: string; subject: string; at: string };
 export type ProductStore = { products: ManagedProduct[]; activity: Activity[]; updatedAt: string };
