@@ -397,3 +397,7 @@
 .public-product-price{font-family:var(--font-heading),sans-serif;color:#173f53;font-size:17px;font-weight:600;margin:14px 0 0}.detail-price{font-size:27px;margin:22px 0}.custom-packshot{display:block;position:relative}.custom-packshot img{display:block}
 
 .product-availability{color:#7f876e;font-size:12px;margin-top:15px}
+
+/* Product price enquiries keep calling and WhatsApp equally accessible. */
+.product-inquiry{margin-top:26px}.product-inquiry h2{font-size:19px;font-weight:600;margin:0 0 15px}.product-inquiry-actions{display:flex;flex-wrap:wrap;gap:10px}.product-inquiry-actions .button{gap:9px;padding-inline:17px;font-size:14px}.product-inquiry-details{margin-top:17px;color:#173f53}.product-inquiry-details summary{font-size:13px;line-height:1.8;cursor:pointer}.product-inquiry-fields{display:grid;gap:12px;margin-top:15px;max-width:480px}.product-inquiry-fields label{display:grid;gap:6px;font-size:13px}.product-inquiry-fields input{min-width:0;width:100%;min-height:44px;padding:10px 12px;background:#fffefa;color:#173f53;border:1px solid #cbd4d5;border-radius:8px;font-size:14px}.product-inquiry .product-note{font-size:12px;line-height:1.9;color:#637078;margin:13px 0 0}
+@media(max-width:600px){.product-inquiry-actions{display:grid;grid-template-columns:1fr}.product-inquiry-actions .button{width:100%;min-height:50px}.product-inquiry-fields{max-width:none}}
