@@ -26,6 +26,8 @@ jobs:
         run: npm install --global pnpm@11.19.0
       - name: Install locked dependencies
         run: pnpm install --frozen-lockfile
+      - name: Audit production dependencies
+        run: pnpm audit --prod --audit-level=high
       - name: Prepare verified product-image model
         run: node scripts/prepare-product-model.mjs
       - name: Test admin permissions, sessions, images and contact tracking
