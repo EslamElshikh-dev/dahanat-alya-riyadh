@@ -18,6 +18,7 @@ const heading = Alexandria({
 });
 
 export const metadata: Metadata = {
+  creator: "المهندس إسلام الشيخ",
   metadataBase: new URL(site.url),
   title: {
     default: "دهانات عليا Alya Paints | متجر دهانات بالرياض",
